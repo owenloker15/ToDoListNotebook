@@ -54,11 +54,11 @@ public abstract class AbstractTaskList {
 	}
 	
 	public Task removeTask(int idx) {
-		
+		return null;
 	}
 	
 	public Task getTask(int idx) {
-		
+		return null;
 	}
 	
 	public void completeTask(Task task) {

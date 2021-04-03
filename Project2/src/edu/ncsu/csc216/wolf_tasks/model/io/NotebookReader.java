@@ -21,14 +21,14 @@ public class NotebookReader {
 	}
 	
 	public static Notebook readNotebookFile(File fileName) {
-		
+		return null;
 	}
 	
 	private static TaskList processTaskList(String taskList) {
-		
+		return null;
 	}
 	
 	private static Task processTask(AbstractTaskList taskList, String task) {
-		
+		return null;
 	}
 }

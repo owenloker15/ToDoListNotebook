@@ -82,7 +82,7 @@ public class Task {
 	}
 	
 	public String getTaskListName() {
-		
+		return null;
 	}
 	
 	public void addTaskList(AbstractTaskList taskList) {
@@ -94,7 +94,7 @@ public class Task {
 	}
 	
 	public Object clone() {
-		
+		return null;
 	}
 
 	@Override
