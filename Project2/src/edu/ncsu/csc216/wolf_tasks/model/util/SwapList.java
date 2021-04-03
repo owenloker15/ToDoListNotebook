@@ -67,13 +67,13 @@ public class SwapList<E> implements ISwapList<E> {
 	@Override
 	public E remove(int idx) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
 	public E get(int idx) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 	
 	

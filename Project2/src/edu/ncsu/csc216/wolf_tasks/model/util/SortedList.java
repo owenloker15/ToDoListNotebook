@@ -13,7 +13,7 @@ public class SortedList<E> implements ISortedList<E>{
 	
 	private int size;
 	
-	private class ListNode() {
+	private class ListNode {
 		
 		private ListNode next;
 		
