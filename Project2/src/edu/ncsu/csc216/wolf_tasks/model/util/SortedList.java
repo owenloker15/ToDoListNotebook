@@ -7,7 +7,7 @@ package edu.ncsu.csc216.wolf_tasks.model.util;
  * @author owenloker
  *
  */
-public class SortedList<E> implements ISortedList<E>{
+public class SortedList<E> implements ISortedList {
 	
 	private ListNode front;
 	
@@ -28,16 +28,9 @@ public class SortedList<E> implements ISortedList<E>{
 		
 	}
 	
-	@Override
+	//MIGHT NEED THE @OVERRIDE TAG (NOT SURE) DELETED EARLIER BC OF ERROR
 	public void add(E element) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public E remove(int idx) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	private void checkIndex(int idx) {
@@ -45,21 +38,33 @@ public class SortedList<E> implements ISortedList<E>{
 	}
 
 	@Override
-	public boolean contains(E element) {
+	public int size() {
 		// TODO Auto-generated method stub
-		return false;
+		return 0;
 	}
 
 	@Override
-	public E get(int idx) {
+	public void add(Comparable element) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public int size() {
+	public Comparable remove(int idx) {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
+	}
+
+	@Override
+	public boolean contains(Comparable element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Comparable get(int idx) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
