@@ -19,7 +19,14 @@ public class SwapList<E> implements ISwapList<E> {
 		
 	}
 	
-//	private void checkCapacity(int)
+	private void checkCapacity(int i) {
+		
+	}
+	
+	
+	private void checkIndex(int idx) {
+		
+	}
 	
 	@Override
 	public void add(E element) {
@@ -55,6 +62,18 @@ public class SwapList<E> implements ISwapList<E> {
 	public int size() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public E remove(int idx) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public E get(int idx) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
