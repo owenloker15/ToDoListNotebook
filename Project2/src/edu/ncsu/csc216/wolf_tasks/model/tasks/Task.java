@@ -4,25 +4,30 @@
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
 
 import edu.ncsu.csc216.wolf_tasks.model.util.ISwapList;
+import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
 
 /**
  * @author owenloker
  *
  */
-public class Task {
+public class Task implements Cloneable{
 	
-	private ISwapList<TaskList> taskLists;
+	private ISwapList<AbstractTaskList> taskLists;
 	
 	private String taskName;
 	
-	private String taskDescpription;
+	private String taskDescription;
 	
 	private boolean recurring;
 	
 	private boolean active;
 	
-	public Task(String taskName, String taskDesciption, boolean recurring, boolean active) {
-		
+	public Task(String taskName, String taskDescription, boolean recurring, boolean active) {
+		setTaskName(taskName);
+		setTaskDescription(taskDescription);
+		setRecurring(recurring);
+		setActive(active);
+		this.taskLists = new SwapList<AbstractTaskList>();
 	}
 
 	/**
@@ -36,21 +41,27 @@ public class Task {
 	 * @param taskName the taskName to set
 	 */
 	public void setTaskName(String taskName) {
+		if(taskName == null) {
+			throw new IllegalArgumentException("Incomplete task information.");
+		}
 		this.taskName = taskName;
 	}
 
 	/**
 	 * @return the taskDescpription
 	 */
-	public String getTaskDescpription() {
-		return taskDescpription;
+	public String getTaskDescription() {
+		return taskDescription;
 	}
 
 	/**
 	 * @param taskDescpription the taskDescpription to set
 	 */
-	public void setTaskDescpription(String taskDescpription) {
-		this.taskDescpription = taskDescpription;
+	public void setTaskDescription(String taskDescription) {
+		if(taskDescription == null) {
+			throw new IllegalArgumentException("Incomplete task information.");
+		}
+		this.taskDescription = taskDescription;
 	}
 
 	/**
@@ -99,7 +110,7 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task [taskName=" + taskName + ", taskDescpription=" + taskDescpription + ", recurring=" + recurring
+		return "Task [taskName=" + taskName + ", taskDescpription=" + taskDescription + ", recurring=" + recurring
 				+ ", active=" + active + "]";
 	}
 	

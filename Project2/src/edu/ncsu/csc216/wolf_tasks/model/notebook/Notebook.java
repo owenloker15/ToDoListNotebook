@@ -10,6 +10,7 @@ import edu.ncsu.csc216.wolf_tasks.model.tasks.ActiveTaskList;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.Task;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 import edu.ncsu.csc216.wolf_tasks.model.util.ISortedList;
+import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
 
 /**
  * @author owenloker
@@ -17,7 +18,7 @@ import edu.ncsu.csc216.wolf_tasks.model.util.ISortedList;
  */
 public class Notebook {
 	
-	private ISortedList<TaskList> taskLists;
+	private SortedList<TaskList> taskLists; //may need to be AbstractTaskList
 	
 	private ActiveTaskList activeTaskList;
 	
@@ -89,7 +90,7 @@ public class Notebook {
 	}
 	
 	public String[] getTaskListsNames() {
-		
+		return null;
 	}
 	
 	public void editTaskList(String taskListName) {

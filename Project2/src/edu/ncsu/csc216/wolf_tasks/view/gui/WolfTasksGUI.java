@@ -1,4 +1,4 @@
-package edu.ncsu.csc216.wolf_tasks.view.ui;
+package edu.ncsu.csc216.wolf_tasks.view.gui;
 
 import java.awt.Container;
 import java.awt.Dimension;

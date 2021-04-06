@@ -14,6 +14,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	public static final String ACTIVE_TASKS_NAME = "Active Tasks";
 	
 	public ActiveTaskList() {
+		super();
 		
 	}
 	
