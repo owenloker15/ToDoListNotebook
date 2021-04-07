@@ -138,8 +138,12 @@ public class Task implements Cloneable{
 	
 	/**
 	 * Returns a clone object of a task
+	 * @throws CloneNotSupportedException 
 	 */
-	public Object clone() {
+	public Object clone() throws CloneNotSupportedException {
+		if (taskName.length() == 4) { // obviously wrong. just trying to get around compiler errors
+			throw new CloneNotSupportedException();
+		}
 		return null;
 	}
 
