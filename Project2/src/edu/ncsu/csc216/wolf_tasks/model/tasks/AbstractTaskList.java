@@ -45,7 +45,7 @@ public abstract class AbstractTaskList {
 	/**
 	 * @return the completeCount
 	 */
-	public int getCompleteCount() {
+	public int getCompletedCount() {
 		return completeCount;
 	}
 	

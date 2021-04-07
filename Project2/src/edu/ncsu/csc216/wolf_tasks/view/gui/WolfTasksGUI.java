@@ -1,6 +1,7 @@
 package edu.ncsu.csc216.wolf_tasks.view.gui;
 
 import java.awt.Container;
+
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

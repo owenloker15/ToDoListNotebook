@@ -20,7 +20,7 @@ public class NotebookReader {
 		
 	}
 	
-	public static Notebook readNotebookFile(File fileName) {
+	public static Notebook readNodebookFile(File fileName) {
 		return null;
 	}
 	

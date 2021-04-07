@@ -81,8 +81,8 @@ public class Notebook {
 	/**
 	 * @return the activeTaskList
 	 */
-	private ActiveTaskList getActiveTaskList() {
-		return activeTaskList;
+	private void getActiveTaskList() {
+		
 	}
 	
 	public void addTaskList(TaskList taskList) {
@@ -105,7 +105,7 @@ public class Notebook {
 		
 	}
 	
-	public void editTask(int idx, String taskDescription, boolean recurring, boolean active) {
+	public void editTask(int idx, String taskName, String taskDescription, boolean recurring, boolean active) {
 		
 	}
 }
