@@ -13,51 +13,70 @@ import edu.ncsu.csc216.wolf_tasks.model.util.ISortedList;
 import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
 
 /**
+ * Represents a Notebook object in the WolfTasks system.
+ * A Notebook is a collection of TaskLists
  * @author owenloker
- *
+ * @author magolden
  */
 public class Notebook {
 	
+	/** SortedList of all TaskLists in the Notebook */
 	private SortedList<TaskList> taskLists; //may need to be AbstractTaskList
 	
+	/** List of all tasks marked as active */
 	private ActiveTaskList activeTaskList;
 	
+	/** The current TaskList */
 	private AbstractTaskList currentTaskList;
 	
+	/** Name of Notebook */
 	private String notebookName;
 	
+	/** Holds a boolean value for whether or not this notebook has been altered */
 	private boolean isChanged;
 	
+	/**
+	 * Notebook Constructor
+	 * @param notebookName name of Notebook
+	 */
 	public Notebook(String notebookName) {
 		
 	}
 	
+	/**
+	 * Utilizes NotebookWriter to save a notebook to a given file
+	 * @param notebookFile name of file to save to
+	 */
 	public void saveNotebook(File notebookFile) {
 		
 	}
 
 	/**
+	 * Gets the current TaskList
 	 * @return the currentTaskList
 	 */
 	public AbstractTaskList getCurrentTaskList() {
-		return currentTaskList;
+		return this.currentTaskList;
 	}
 
 	/**
-	 * @param currentTaskList the currentTaskList to set
+	 * Sets the current TaskList
+	 * @param taskListName name of the currentTaskList to set
 	 */
 	public void setCurrentTaskList(String taskListName) {
 //		this.taskListName = taskListName;
 	}
 
 	/**
+	 * Gets the Notebook name
 	 * @return the notebookName
 	 */
 	public String getNotebookName() {
-		return notebookName;
+		return this.notebookName;
 	}
 
 	/**
+	 * Sets the Notebook name
 	 * @param notebookName the notebookName to set
 	 */
 	private void setNotebookName(String notebookName) {
@@ -65,10 +84,11 @@ public class Notebook {
 	}
 
 	/**
+	 * Gets the current value of isChanged
 	 * @return the isChanged
 	 */
 	public boolean isChanged() {
-		return isChanged;
+		return this.isChanged;
 	}
 
 	/**
@@ -79,32 +99,60 @@ public class Notebook {
 	}
 
 	/**
+	 * Gets the ActiveTaskList
 	 * @return the activeTaskList
 	 */
 	private void getActiveTaskList() {
 		
 	}
 	
+	/**
+	 * Adds a TaskList to the Notebook
+	 * @param taskList to be added
+	 */
 	public void addTaskList(TaskList taskList) {
 		
 	}
 	
+	/**
+	 * Gets the names of all the TaskLists as a String array
+	 * @return String array of TaskList names
+	 */
 	public String[] getTaskListsNames() {
 		return null;
 	}
 	
+	/**
+	 * Changes the name of a TaskList
+	 * @param taskListName new name of TaskList
+	 */
 	public void editTaskList(String taskListName) {
 		
 	}
 	
+	/**
+	 * Removes a TaskList form the Notebook
+	 */
 	public void removeTaskList() {
 		
 	}
 	
+	/**
+	 * Adds a Task to a TaskList
+	 * @param task to be added
+	 */
 	public void addTask(Task task) {
 		
 	}
 	
+	/**
+	 * Edits a task
+	 * @param idx Unique index of the task that will be edited
+	 * @param taskName name of task
+	 * @param taskDescription task description
+	 * @param recurring boolean value true if the task is recurring
+	 * @param active boolean value true if the task is active
+	 */
 	public void editTask(int idx, String taskName, String taskDescription, boolean recurring, boolean active) {
 		
 	}
