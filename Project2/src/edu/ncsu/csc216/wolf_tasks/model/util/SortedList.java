@@ -58,6 +58,9 @@ public class SortedList<E> implements ISortedList {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void add(Comparable element) {
+		if (element == null) {
+			throw new NullPointerException("Cannot add null element.");
+		}
 		if (front == null) { //Special case of adding to an empty list
 			front = new ListNode((E) element, front); //Update front to point to new node
 			size++; //Increment size
