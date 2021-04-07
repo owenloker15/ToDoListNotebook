@@ -1,8 +1,8 @@
 package edu.ncsu.csc216.wolf_tasks.model.io;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
+//import static org.junit.Assert.assertEquals;
+//
+//import org.junit.Test;
 
 /**
  * Tests NotebookReader
@@ -11,8 +11,8 @@ import org.junit.Test;
  */
 public class NotebookReaderTest {
 
-	@Test
-	public void test() {
-		assertEquals(0, 1-1);
-	}
+//	@Test
+//	public void test() {
+//		assertEquals(0, 1-1);
+//	}
 }
