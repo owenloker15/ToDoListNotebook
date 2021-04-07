@@ -3,6 +3,7 @@
  */
 package edu.ncsu.csc216.wolf_tasks.model.util;
 
+
 /**
  * Sorted Linked List of TaskLists
  * @author owenloker
@@ -35,7 +36,8 @@ public class SortedList<E> implements ISortedList {
 		 * @param node reference to the next node in the list
 		 */
 		public ListNode(E element, ListNode node) {
-			
+			this.data = element;
+			this.next = node;
 		}
 	}
 	
@@ -43,26 +45,66 @@ public class SortedList<E> implements ISortedList {
 	 * SortedList Constructor
 	 */
 	public SortedList() {
-		
+		front = null;
+		size = 0;
 	}
 	
-	//MIGHT NEED THE @OVERRIDE TAG (NOT SURE) DELETED EARLIER BC OF ERROR
 	/**
 	 * Adds the element to the list in sorted order.
 	 * @param element element to add
 	 * @throws NullPointerException if element is null
 	 * @throws IllegalArgumentException if element cannot be added 
 	 */
-	public void add(E element) {
-		// TODO Auto-generated method stub
+	@SuppressWarnings("unchecked")
+	@Override
+	public void add(Comparable element) {
+		if (front == null) { //Special case of adding to an empty list
+			front = new ListNode((E) element, front); //Update front to point to new node
+			size++; //Increment size
+		}
+		else {
+			recursiveAdd(front, (E) element); //Recursion when list has contents
+		}
 	}
 	
-	/**
-	 * Checks to see if the item at the specified index is null?
+	private void recursiveAdd(ListNode current, E element) {
+		if (current.next == null) { //Base case – next is null
+			current.next = new ListNode(element, current.next); //Add new node
+			size++; //Increment size
+		}
+		else {
+			recursiveAdd(current.next, element); //Recursion when list has contents
+		}
+	}
+	
+//	/**
+//	 * Adds the element to the list in sorted order.
+//	 * @param element element to add
+//	 * @throws NullPointerException if element is null
+//	 * @throws IllegalArgumentException if element cannot be added 
+//	 */
+//	public void add(E element) {
+//		ListNode current = front;
+//		if (front == null) {
+//	        front = new ListNode(element, current);
+//		}
+//		else {
+//			while (current.next != null) {
+//					current = current.next;
+//				}
+//				current.next = new ListNode(element, current);
+//			}
+//		size++;
+//	}
+	
+	/** 
+	 * Checks to see if the item at the specified index not a valid index
 	 * @param idx index to check
 	 */
 	private void checkIndex(int idx) {
-		
+		if (idx < 0 || idx >= size()) {
+			throw new IndexOutOfBoundsException("Invalid index.");
+		}
 	}
 
 	/**
@@ -71,8 +113,7 @@ public class SortedList<E> implements ISortedList {
 	 */
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.size;
 	}
 
 	/**
@@ -83,10 +124,25 @@ public class SortedList<E> implements ISortedList {
 	 * @throws IndexOutOfBoundsException if the idx is out of bounds
 	 * 		for the list
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Comparable<E> remove(int idx) {
-		// TODO Auto-generated method stub
-		return null;
+		checkIndex(idx);
+		
+		E removed = null;
+		if(idx == 0) {
+			removed = front.data;
+			front  = front.next;
+		} else {
+			ListNode current = front;
+			for(int i = 0; i < idx - 1; i++) {
+				current = current.next;
+			}
+			removed = current.next.data;
+			current.next = current.next.next;
+		}
+		size--;
+		return (Comparable<E>) removed;
 	}
 
 	/**
@@ -96,8 +152,19 @@ public class SortedList<E> implements ISortedList {
 	 */
 	@Override
 	public boolean contains(Comparable element) {
-		// TODO Auto-generated method stub
-		return false;
+		return contains(front, element);
+	}
+	
+	
+	private boolean contains(ListNode current, Comparable element) {
+		if (current == null) {
+			return false;
+		}
+		if (current.data == element) {
+			return true;
+		}
+		
+		return contains(current.next, element);
 	}
 
 	/**
@@ -107,21 +174,17 @@ public class SortedList<E> implements ISortedList {
 	 * @throws IndexOutOfBoundsException if the idx is out of bounds
 	 * 		for the list
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Comparable<E> get(int idx) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * Adds the element to the list in sorted order.
-	 * @param element element to add
-	 * @throws NullPointerException if element is null
-	 * @throws IllegalArgumentException if element cannot be added 
-	 */
-	@Override
-	public void add(Comparable element) {
-		// TODO Auto-generated method stub
+		checkIndex(idx);
+		
+		ListNode current = front;
+		for(int i = 0; i < idx; i++) {
+			current = current.next;
+		}
+		
+		return (Comparable<E>) current.data;
 	}
 	
 }
