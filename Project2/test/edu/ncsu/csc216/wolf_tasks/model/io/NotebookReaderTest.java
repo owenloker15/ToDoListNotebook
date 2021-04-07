@@ -11,4 +11,8 @@ import org.junit.Test;
  */
 public class NotebookReaderTest {
 
+	@Test
+	public void test() {
+		assertEquals(0, 1-1);
+	}
 }
