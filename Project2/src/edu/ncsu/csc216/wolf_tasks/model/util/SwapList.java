@@ -78,9 +78,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveUp(int idx) {
-		if (idx < 0 || idx >= size()) {
-			throw new IndexOutOfBoundsException("Invalid index.");
-		}
+		checkIndex(idx);
 		
 		E moveUp = get(idx);
 		E moveDown = get(idx - 1);
@@ -97,9 +95,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveDown(int idx) {
-		if (idx < 0 || idx >= size()) {
-			throw new IndexOutOfBoundsException("Invalid index.");
-		}
+		checkIndex(idx);
 		
 		E moveDown = get(idx);
 		E moveUp = get(idx + 1);
@@ -116,9 +112,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveToFront(int idx) {
-		if (idx < 0 || idx >= size()) {
-			throw new IndexOutOfBoundsException("Invalid index.");
-		}
+		checkIndex(idx);
 		
 		E front = this.list[idx];
 		for (int i = idx; i > 0; i--) {
@@ -139,9 +133,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveToBack(int idx) {
-		if (idx < 0 || idx >= size()) {
-			throw new IndexOutOfBoundsException("Invalid index.");
-		}
+		checkIndex(idx);
 		
 		E back = this.list[idx];
 		for (int i = idx; i < this.size - 1; i++) {
@@ -171,9 +163,8 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public E remove(int idx) {
-		if (idx < 0 || idx >= size()) {
-			throw new IndexOutOfBoundsException("Invalid index.");
-		}
+		checkIndex(idx);
+		
 		E removed = this.list[idx];
 		this.list[idx] = null;
 		for (int i = idx; i < this.size; i++) {
@@ -193,9 +184,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public E get(int idx) {
-		if (idx < 0 || idx >= size()) {
-			throw new IndexOutOfBoundsException("Invalid index.");
-		}
+		checkIndex(idx);
 		return this.list[idx];
 	}
 	
