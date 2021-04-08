@@ -11,7 +11,7 @@ import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
  * @author owenloker
  * @author magolden
  */
-public class Task implements Cloneable{
+public class Task implements Cloneable {
 	
 	/** SwapList of TaskLists */
 	private ISwapList<AbstractTaskList> taskLists;
@@ -56,7 +56,7 @@ public class Task implements Cloneable{
 	 * @param taskName the taskName to set
 	 */
 	public void setTaskName(String taskName) {
-		if(taskName == null) {
+		if(taskName == null || "".equals(taskName)) {
 			throw new IllegalArgumentException("Incomplete task information.");
 		}
 		this.taskName = taskName;
@@ -72,7 +72,7 @@ public class Task implements Cloneable{
 
 	/**
 	 * Sets the task description
-	 * @param taskDescpription the taskDescpription to set
+	 * @param taskDescription the taskDescpription to set
 	 */
 	public void setTaskDescription(String taskDescription) {
 		if(taskDescription == null) {
@@ -118,7 +118,10 @@ public class Task implements Cloneable{
 	 * @return name of task list
 	 */
 	public String getTaskListName() {
-		return null;
+		if (this.taskLists == null || this.taskLists.size() == 0) {
+			return "";
+		}
+		return this.taskLists.get(0).getTaskListName();
 	}
 	
 	/**
@@ -126,25 +129,53 @@ public class Task implements Cloneable{
 	 * @param taskList tasklist to be added
 	 */
 	public void addTaskList(AbstractTaskList taskList) {
+		if (taskList == null) {
+			throw new IllegalArgumentException("Incomplete task information.");
+		}
 		
+		boolean isRegistered = false;
+		for (int i = 0; i < taskList.getTasks().size(); i++) {
+			if (this.equals(taskList.getTask(i))) {
+				isRegistered = true;
+			}
+		}
+		
+		if (!isRegistered) {
+			this.taskLists.add(taskList);
+		}
 	}
 	
 	/**
 	 * Marks a task as complete
 	 */
 	public void completeTask() {
-		
+//		TaskList.completeTask(this);
+		// TODO
+		Task clone = null;
+		if (this.isRecurring()) {
+			try {
+				clone = (Task) this.clone();
+				
+				for (int i = 0; i < this.taskLists.size(); i++) {
+					for (int j = 0; j < this.taskLists.get(i).getTasks().size(); j++) {
+						if (this.equals(this.taskLists.get(i).getTask(j))) {
+							this.taskLists.get(i).addTask(clone);
+						}
+					}
+				}
+			} catch (CloneNotSupportedException e) {
+				// do nothing
+			}
+		}
 	}
 	
 	/**
 	 * Returns a clone object of a task
-	 * @throws CloneNotSupportedException 
+	 * @return cloned object
+	 * @throws CloneNotSupportedException thrown when clone cannot be performed
 	 */
 	public Object clone() throws CloneNotSupportedException {
-		if (taskName.length() == 4) { // obviously wrong. just trying to get around compiler errors
-			throw new CloneNotSupportedException();
-		}
-		return null;
+		return (Object) super.clone();
 	}
 
 	/**
@@ -152,8 +183,17 @@ public class Task implements Cloneable{
 	 */
 	@Override
 	public String toString() {
-		return "Task [taskName=" + taskName + ", taskDescpription=" + taskDescription + ", recurring=" + recurring
-				+ ", active=" + active + "]";
+		String r = "";
+		if (isRecurring()) {
+			r = "recurring";
+		}
+		
+		String a = "";
+		if (isActive()) {
+			a = "active";
+		}
+		
+		return "* " + getTaskName() + "," + r + "," + a + "\n" + getTaskDescription() + "\n";
 	}
 	
 	
