@@ -28,6 +28,9 @@ public abstract class AbstractTaskList {
 	 * @param completedCount tally of complete tasks
 	 */
 	public AbstractTaskList(String taskListName, int completedCount) {
+		if (completedCount < 0) {
+			throw new IllegalArgumentException("Invalid completed count.");
+		}
 		this.tasks = new SwapList<Task>();
 		this.completedCount = completedCount;
 		setTaskListName(taskListName);
@@ -46,6 +49,9 @@ public abstract class AbstractTaskList {
 	 * @param taskListName the taskListName to set
 	 */
 	public void setTaskListName(String taskListName) {
+		if (taskListName == null || "".equals(taskListName)) {
+			throw new IllegalArgumentException("Invalid name.");
+		}
 		this.taskListName = taskListName;
 	}
 
@@ -70,7 +76,7 @@ public abstract class AbstractTaskList {
 	 * @param task to be added
 	 */
 	public void addTask(Task task) {
-		
+		task.addTaskList(this);
 	}
 	
 	/**
@@ -79,7 +85,7 @@ public abstract class AbstractTaskList {
 	 * @return removed task
 	 */
 	public Task removeTask(int idx) {
-		return null;
+		return tasks.remove(idx);
 	}
 	
 	/**
@@ -88,7 +94,7 @@ public abstract class AbstractTaskList {
 	 * @return task found from list
 	 */
 	public Task getTask(int idx) {
-		return null;
+		return tasks.get(idx);
 	}
 	
 	/**
@@ -96,7 +102,12 @@ public abstract class AbstractTaskList {
 	 * @param task task to complete
 	 */
 	public void completeTask(Task task) {
-		
+		for (int i = 0; i < tasks.size(); i++) {
+			if (task == tasks.get(i)) {
+				tasks.remove(i);
+				this.completedCount++;
+			}
+		}
 	}
 	
 	/**
