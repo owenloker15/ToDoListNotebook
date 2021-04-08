@@ -39,10 +39,18 @@ public class TaskList extends AbstractTaskList {
 	
 	/**
 	 * Comparable method uses to compare two TaskLists
+	 * -1 if any of the other taskList's fields are lexicographically greater than this Task List, returns 1 if the
+	 * reverse is true, and 0 if all three fields are equal between the two TaskList
 	 * @param taskList taskList to be compared
 	 * @return a integer corresponding to the comparison of tasklists
+	 * 
 	 */
 	public int compareTo(TaskList taskList) {
-		return -1;
+		if (getTaskListName().compareTo(taskList.getTaskListName()) < 0) {
+			return -1;
+		} else if (getTaskListName().compareTo(taskList.getTaskListName()) > 0) {
+			return 1;
+		}
+		return 0;
 	}
 }
