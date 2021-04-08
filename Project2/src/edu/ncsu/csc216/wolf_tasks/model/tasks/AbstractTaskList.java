@@ -4,6 +4,7 @@
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
 
 import edu.ncsu.csc216.wolf_tasks.model.util.ISwapList;
+import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
 
 /**
  * Parent class of the TaskList object
@@ -27,7 +28,9 @@ public abstract class AbstractTaskList {
 	 * @param completedCount tally of complete tasks
 	 */
 	public AbstractTaskList(String taskListName, int completedCount) {
-		
+		tasks = new SwapList<Task>();
+		completedCount = 0;
+		setTaskListName(taskListName);
 	}
 
 	/**
