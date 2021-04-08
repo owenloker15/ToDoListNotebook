@@ -20,7 +20,7 @@ public abstract class AbstractTaskList {
 	private String taskListName;
 	
 	/** Running tally of total tasks completed */
-	private int completeCount;
+	private int completedCount;
 	
 	/**
 	 * AbstractTaskList Constructor
@@ -28,8 +28,8 @@ public abstract class AbstractTaskList {
 	 * @param completedCount tally of complete tasks
 	 */
 	public AbstractTaskList(String taskListName, int completedCount) {
-		tasks = new SwapList<Task>();
-		completedCount = 0;
+		this.tasks = new SwapList<Task>();
+		this.completedCount = completedCount;
 		setTaskListName(taskListName);
 	}
 
@@ -62,7 +62,7 @@ public abstract class AbstractTaskList {
 	 * @return completeCount number of completed tasks
 	 */
 	public int getCompletedCount() {
-		return this.completeCount;
+		return this.completedCount;
 	}
 	
 	/**
