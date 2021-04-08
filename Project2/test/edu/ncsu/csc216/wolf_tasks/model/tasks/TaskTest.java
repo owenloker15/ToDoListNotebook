@@ -1,6 +1,8 @@
-package edu.ncsu.csc216.wolf_tasks.model.tasks;
+	package edu.ncsu.csc216.wolf_tasks.model.tasks;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
@@ -12,16 +14,16 @@ import org.junit.Test;
  */
 public class TaskTest {
 	
-	/** Tests Task constructor
-	 * 
+	/** 
+	 * Tests Task constructor
 	 */
 	@Test
 	public void testConstructor() {
 		Task t = new Task("HW", "CSC", false, false);
 		assertEquals("HW", t.getTaskName());
 		assertEquals("CSC", t.getTaskDescription());
-		assertEquals(false, t.isRecurring());
-		assertEquals(false, t.isActive());
+		assertFalse(t.isRecurring());
+		assertFalse(t.isActive());
 		
 		try {
 			t = new Task(null, "CSC", false, false);
@@ -36,17 +38,67 @@ public class TaskTest {
 		catch (IllegalArgumentException e) {
 			assertEquals("Incomplete task information.", e.getMessage());
 		}
+		
+		t = new Task("HW", "CSC", true, true);
+		assertEquals("HW", t.getTaskName());
+		assertEquals("CSC", t.getTaskDescription());
+		assertTrue(t.isRecurring());
+		assertTrue(t.isActive());
+		
+		t.setTaskDescription("new");
+		assertEquals("new", t.getTaskDescription());
 	}
 	
-	/** Tests getTaskListName method
-	 * 
+	/** 
+	 * Tests setTaskListName method
 	 */
 	@Test
-	public void testGetTaskListName() {
+	public void testSetTaskListName() {
 		Task t = new Task("HW", "CSC", false, false);
+		assertEquals("HW", t.getTaskName());
 		AbstractTaskList list = new TaskList("List", 0);
 		t.addTaskList(list);
 		assertEquals("List", t.getTaskListName());
+		t.setTaskName("new");
+		assertEquals("new", t.getTaskName());
+	}
+	
+	/**
+	 * Test set recurring and set active
+	 */
+	@Test
+	public void testSetPriority() {
+		Task t = new Task("HW", "CSC", false, false);
+		assertFalse(t.isRecurring());
+		assertFalse(t.isActive());
+		
+		t.setActive(true);
+		t.setRecurring(true);
+		assertTrue(t.isRecurring());
+		assertTrue(t.isActive());
+		
+		t.setActive(false);
+		t.setRecurring(false);
+		assertFalse(t.isRecurring());
+		assertFalse(t.isActive());
+	}
+	
+	/**
+	 * Test toString for Task
+	 */
+	@Test
+	public void testToString() {
+		Task t1 = new Task("HW", "CSC", false, false);
+		assertEquals("* HW\nCSC\n", t1.toString());
+		
+		Task t2 = new Task("HW", "CSC", true, false);
+		assertEquals("* HW,recurring\nCSC\n", t2.toString());
+		
+		Task t3 = new Task("HW", "CSC", true, true);
+		assertEquals("* HW,recurring,active\nCSC\n", t3.toString());
+		
+		Task t4 = new Task("HW", "CSC", false, true);
+		assertEquals("* HW,active\nCSC\n", t4.toString());
 	}
 	
 	/** Tests completeTask method
@@ -55,6 +107,27 @@ public class TaskTest {
 	@Test
 	public void testCompleteTask() {
 		Task t = new Task("HW", "CSC", false, false);
+		AbstractTaskList list = new TaskList("List", 0);
+		t.addTaskList(list);
+		list.addTask(t);
+		assertEquals(0, list.getCompletedCount());
 		t.completeTask();
+		assertEquals(1, list.getCompletedCount());
+		assertEquals(0, list.getTasks().size());
+	}
+	
+	/**
+	 * Test cloning and adding a cloned task
+	 */
+	@Test
+	public void testClone() {
+		Task t = new Task("HW", "CSC", true, false);
+		AbstractTaskList list = new TaskList("List", 0);
+		t.addTaskList(list);
+		list.addTask(t);
+		assertEquals(0, list.getCompletedCount());
+		t.completeTask();
+		assertEquals(1, list.getCompletedCount());
+		assertEquals(1, list.getTasks().size());
 	}
 }

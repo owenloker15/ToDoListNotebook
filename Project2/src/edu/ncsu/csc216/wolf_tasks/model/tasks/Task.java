@@ -149,8 +149,14 @@ public class Task implements Cloneable {
 	 * Marks a task as complete
 	 */
 	public void completeTask() {
-//		TaskList.completeTask(this);
-		// TODO
+		for (int i = 0; i < this.taskLists.size(); i++) {
+			for (int j = 0; j < this.taskLists.get(i).getTasks().size(); j++) {
+				if (this.equals(this.taskLists.get(i).getTask(j))) {
+					this.taskLists.get(i).completeTask(this);
+				}
+			}
+		}
+		
 		Task clone = null;
 		if (this.isRecurring()) {
 			try {
@@ -166,6 +172,14 @@ public class Task implements Cloneable {
 			} catch (CloneNotSupportedException e) {
 				// do nothing
 			}
+			
+//			for (int i = 0; i < this.taskLists.size(); i++) {
+//				for (int j = 0; j < this.taskLists.get(i).getTasks().size(); j++) {
+//					if (this.equals(this.taskLists.get(i).getTask(j))) {
+//						this.taskLists.get(i).completeTask(this);
+//					}
+//				}
+//			}
 		}
 	}
 	
@@ -183,17 +197,16 @@ public class Task implements Cloneable {
 	 */
 	@Override
 	public String toString() {
-		String r = "";
+		String task = getTaskName();
 		if (isRecurring()) {
-			r = "recurring";
+			task += ",recurring";
 		}
 		
-		String a = "";
 		if (isActive()) {
-			a = "active";
+			task += ",active";
 		}
 		
-		return "* " + getTaskName() + "," + r + "," + a + "\n" + getTaskDescription() + "\n";
+		return "* " + task + "\n" + getTaskDescription() + "\n";
 	}
 	
 	
