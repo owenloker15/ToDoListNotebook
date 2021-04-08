@@ -1,6 +1,8 @@
 package edu.ncsu.csc216.wolf_tasks.model.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -114,5 +116,36 @@ public class SortedListTest {
 		
 		s.remove(0);
 		assertEquals(0, s.size());
+	}
+	
+	/**
+	 * Test Remove
+	 */
+	@Test
+	public void testContains() {
+		SortedList<String> s = new SortedList<String>();
+		assertEquals(0, s.size());
+		
+		s.add("1");
+		assertEquals("1", s.get(0));
+		assertEquals(1, s.size());
+		
+		s.add("2");
+		assertEquals("2", s.get(1));
+		assertEquals(2, s.size());
+		
+		s.add("3");
+		assertEquals("3", s.get(2));
+		assertEquals(3, s.size());
+		
+		s.add("4");
+		assertEquals("4", s.get(3));
+		assertEquals(4, s.size());
+		
+		assertFalse(s.contains(null));
+		assertTrue(s.contains("1"));
+		assertTrue(s.contains("2"));
+		assertTrue(s.contains("3"));
+		assertTrue(s.contains("4"));
 	}
 }
