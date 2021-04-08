@@ -3,6 +3,8 @@
  */
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
 
+import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
+
 /**
  * A TaskList object in the WolfTasks system. A list of task objects. Extends AbstractTaskList
  * @author owenloker
@@ -24,7 +26,15 @@ public class TaskList extends AbstractTaskList {
 	 * @return 2D array of tasks
 	 */
 	public String[][] getTasksAsArray() {
-		return null;
+		SwapList<Task> tasks = (SwapList<Task>) this.getTasks();
+		String[][] taskArray = new String[tasks.size()][tasks.size()];
+		String iString;
+		for (int i = 0; i < tasks.size(); i++) {
+			for (int j = 1; j < tasks.size() + 1; i++) {
+				taskArray[j][0] = tasks.get(i).getTaskName();
+			}
+		}
+		return taskArray;
 	}
 	
 	/**
