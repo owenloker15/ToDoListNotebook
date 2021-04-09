@@ -114,6 +114,15 @@ public class TaskTest {
 		t.completeTask();
 		assertEquals(1, list.getCompletedCount());
 		assertEquals(0, list.getTasks().size());
+		
+		Task t1 = new Task("t1", "description", true, false);
+		AbstractTaskList list1 = new TaskList("List1", 0);
+		t1.addTaskList(list1);
+		list1.addTask(t1);
+		assertEquals(0, list1.getCompletedCount());
+		t1.completeTask();
+		assertEquals(1, list1.getCompletedCount());
+		assertEquals(1, list1.getTasks().size());
 	}
 	
 	/**
@@ -125,9 +134,15 @@ public class TaskTest {
 		AbstractTaskList list = new TaskList("List", 0);
 		t.addTaskList(list);
 		list.addTask(t);
-		assertEquals(0, list.getCompletedCount());
-		t.completeTask();
-		assertEquals(1, list.getCompletedCount());
-		assertEquals(1, list.getTasks().size());
+		try {
+			Task clone = (Task) t.clone();
+			assertEquals("HW", clone.getTaskName());
+			assertEquals("CSC", clone.getTaskDescription());
+			assertTrue(clone.isRecurring());
+			assertFalse(clone.isActive());
+			assertEquals("List", clone.getTaskListName());
+		} catch (CloneNotSupportedException e) {
+			fail();
+		}
 	}
 }

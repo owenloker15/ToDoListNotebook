@@ -149,13 +149,13 @@ public class Task implements Cloneable {
 	 * Marks a task as complete
 	 */
 	public void completeTask() {
-		for (int i = 0; i < this.taskLists.size(); i++) {
-			for (int j = 0; j < this.taskLists.get(i).getTasks().size(); j++) {
-				if (this.equals(this.taskLists.get(i).getTask(j))) {
-					this.taskLists.get(i).completeTask(this);
-				}
-			}
-		}
+//		for (int i = 0; i < this.taskLists.size(); i++) {
+//			for (int j = 0; j < this.taskLists.get(i).getTasks().size(); j++) {
+//				if (this.equals(this.taskLists.get(i).getTask(j))) {
+//					this.taskLists.get(i).completeTask(this);
+//				}
+//			}
+//		}
 		
 		Task clone = null;
 		if (this.isRecurring()) {
@@ -172,14 +172,14 @@ public class Task implements Cloneable {
 			} catch (CloneNotSupportedException e) {
 				// do nothing
 			}
+		}
 			
-//			for (int i = 0; i < this.taskLists.size(); i++) {
-//				for (int j = 0; j < this.taskLists.get(i).getTasks().size(); j++) {
-//					if (this.equals(this.taskLists.get(i).getTask(j))) {
-//						this.taskLists.get(i).completeTask(this);
-//					}
-//				}
-//			}
+		for (int i = 0; i < this.taskLists.size(); i++) {
+			for (int j = 0; j < this.taskLists.get(i).getTasks().size(); j++) {
+				if (this.equals(this.taskLists.get(i).getTask(j))) {
+					this.taskLists.get(i).completeTask(this);
+				}
+			}
 		}
 	}
 	
@@ -189,7 +189,26 @@ public class Task implements Cloneable {
 	 * @throws CloneNotSupportedException thrown when clone cannot be performed
 	 */
 	public Object clone() throws CloneNotSupportedException {
-		return (Object) super.clone();
+		boolean isRegistered = false;
+		
+		for (int i = 0; i < this.taskLists.size(); i++) {
+			for (int j = 0; j < this.taskLists.get(i).getTasks().size(); j++) {
+				if (this.equals(this.taskLists.get(i).getTask(j))) {
+					isRegistered = true;
+				}
+			}
+		}
+		
+		Task clone = null;
+		if (!isRegistered) {
+			throw new CloneNotSupportedException("Cannot clone.");
+		} else {
+			clone = new Task(this.getTaskName(), this.getTaskDescription(), this.isRecurring(), this.isActive());
+			ISwapList<AbstractTaskList> list = this.taskLists;
+			clone.taskLists = list;
+		}
+		
+		return clone;
 	}
 
 	/**
