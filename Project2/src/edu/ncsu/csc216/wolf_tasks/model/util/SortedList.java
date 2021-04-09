@@ -9,7 +9,7 @@ package edu.ncsu.csc216.wolf_tasks.model.util;
  * @author owenloker
  * @author magolden
  */
-public class SortedList<E> implements ISortedList {
+public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	
 	/** Front ListNode */
 	private ListNode front;
@@ -55,9 +55,9 @@ public class SortedList<E> implements ISortedList {
 	 * @throws NullPointerException if element is null
 	 * @throws IllegalArgumentException if element cannot be added 
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@Override
-	public void add(Comparable element) {
+	public void add(E element) {
 		if (element == null) {
 			throw new NullPointerException("Cannot add null element.");
 		}
@@ -127,9 +127,9 @@ public class SortedList<E> implements ISortedList {
 	 * @throws IndexOutOfBoundsException if the idx is out of bounds
 	 * 		for the list
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@Override
-	public Comparable<E> remove(int idx) {
+	public E remove(int idx) {
 		checkIndex(idx);
 		
 		E removed = null;
@@ -145,7 +145,7 @@ public class SortedList<E> implements ISortedList {
 			current.next = current.next.next;
 		}
 		size--;
-		return (Comparable<E>) removed;
+		return removed;
 	}
 
 	/**
@@ -154,12 +154,12 @@ public class SortedList<E> implements ISortedList {
 	 * @return true if element is found
 	 */
 	@Override
-	public boolean contains(Comparable element) {
+	public boolean contains(E element) {
 		return contains(front, element);
 	}
 	
 	
-	private boolean contains(ListNode current, Comparable element) {
+	private boolean contains(ListNode current, E element) {
 		if (current == null) {
 			return false;
 		}
@@ -177,9 +177,9 @@ public class SortedList<E> implements ISortedList {
 	 * @throws IndexOutOfBoundsException if the idx is out of bounds
 	 * 		for the list
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@Override
-	public Comparable<E> get(int idx) {
+	public E get(int idx) {
 		checkIndex(idx);
 		
 		ListNode current = front;
@@ -187,7 +187,7 @@ public class SortedList<E> implements ISortedList {
 			current = current.next;
 		}
 		
-		return (Comparable<E>) current.data;
+		return current.data;
 	}
 	
 }

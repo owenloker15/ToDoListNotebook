@@ -73,7 +73,12 @@ public class Notebook {
 	 * @param taskListName name of the currentTaskList to set
 	 */
 	public void setCurrentTaskList(String taskListName) {
-//		this.taskListName = taskListName;
+		for (int i = 0; i < this.taskLists.size(); i++) {
+			TaskList list = (TaskList) this.taskLists.get(i);
+			if (taskListName.equals(list.getTaskListName())) {
+				this.currentTaskList = list;
+			}
+		}
 	}
 
 	/**
@@ -115,7 +120,16 @@ public class Notebook {
 	 * @return the activeTaskList
 	 */
 	private void getActiveTaskList() {
+		this.activeTaskList = null;
 		
+		for (int i = 0; i < this.taskLists.size(); i++) {
+			TaskList list = (TaskList) this.taskLists.get(i);
+			for (int j = 0; j < list.getTasks().size(); j++) {
+				if(list.getTasks().get(j).isActive()) {
+					this.activeTaskList.addTask(list.getTasks().get(j));
+				}
+			}
+		}
 	}
 	
 	/**
@@ -123,9 +137,11 @@ public class Notebook {
 	 * @param taskList to be added
 	 */
 	public void addTaskList(TaskList taskList) {
-		if (taskList.getTaskListName().equals("Active Tasks")) {
-			
+		if (taskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
+			throw new IllegalArgumentException("Invalid name.");
 		}
+//		this.taskLists.add(taskList);
+		// TODO
 	}
 	
 	/**
