@@ -5,7 +5,6 @@ package edu.ncsu.csc216.wolf_tasks.model.notebook;
 
 import java.io.File;
 
-import edu.ncsu.csc216.service_wolf.model.io.ServiceGroupWriter;
 import edu.ncsu.csc216.wolf_tasks.model.io.NotebookWriter;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.AbstractTaskList;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.ActiveTaskList;

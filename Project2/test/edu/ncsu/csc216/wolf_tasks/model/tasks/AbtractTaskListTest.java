@@ -84,6 +84,8 @@ public class AbtractTaskListTest {
 		assertEquals("English", list.removeTask(2).getTaskName());
 		assertEquals(2, list.getTasks().size());
 		
+		taskArr = list.getTasksAsArray();
+		
 		assertEquals("1", taskArr[0][0]);
 		assertEquals("CSC", taskArr[0][1]);
 		assertEquals("2", taskArr[1][0]);
@@ -91,6 +93,8 @@ public class AbtractTaskListTest {
 		
 		assertEquals("CSC", list.removeTask(0).getTaskName());
 		assertEquals(1, list.getTasks().size());
+		
+		taskArr = list.getTasksAsArray();
 		
 		assertEquals("1", taskArr[0][0]);
 		assertEquals("Math", taskArr[0][1]);

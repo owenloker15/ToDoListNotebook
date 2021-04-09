@@ -27,7 +27,7 @@ public class TaskList extends AbstractTaskList {
 	 */
 	public String[][] getTasksAsArray() {
 		SwapList<Task> tasks = (SwapList<Task>) this.getTasks();
-		String[][] taskArray = new String[tasks.size()][tasks.size()];
+		String[][] taskArray = new String[tasks.size()][2];
 		int j;
 		String jString;
 		for (int i = 0; i < tasks.size(); i++) {

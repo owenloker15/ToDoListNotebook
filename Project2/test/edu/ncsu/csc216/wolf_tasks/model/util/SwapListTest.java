@@ -115,6 +115,34 @@ public class SwapListTest {
 		
 		s.remove(0);
 		assertEquals(0, s.size());
+		
+		SwapList<String> s1 = new SwapList<String>();
+		
+		assertEquals(0, s1.size());
+		
+		s1.add("1");
+		assertEquals("1", s1.get(0));
+		assertEquals(1, s1.size());
+		
+		s1.add("2");
+		assertEquals("2", s1.get(1));
+		assertEquals(2, s1.size());
+		
+		s1.add("3");
+		assertEquals("3", s1.get(2));
+		assertEquals(3, s1.size());
+		
+		s1.remove(2);
+		assertEquals("2", s1.get(1));
+		assertEquals("1", s1.get(0));
+		assertEquals(2, s1.size());
+		
+		s1.remove(0);
+		assertEquals("2", s1.get(0));
+		assertEquals(1, s1.size());
+		
+		s1.remove(0);
+		assertEquals(0, s1.size());
 	}
 	
 	/**
