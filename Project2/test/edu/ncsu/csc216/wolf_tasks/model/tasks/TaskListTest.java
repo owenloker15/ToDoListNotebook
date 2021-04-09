@@ -16,7 +16,7 @@ public class TaskListTest {
 	 */
 	@Test
 	public void testGetTasksAsArray() {
-		AbstractTaskList list = new TaskList("Name", 0);
+		TaskList list = new TaskList("Name", 0);
 		Task t = new Task("CSC", "HW", false, true);
 		t.addTaskList(list);
 		list.addTask(t);
@@ -40,6 +40,11 @@ public class TaskListTest {
 	 */
 	@Test
 	public void testCompareTo() {
-		
+		TaskList listA = new TaskList("Apple", 0);
+		TaskList listB = new TaskList("Banana", 0);
+		assertEquals(-1, listA.compareTo(listB));
+		TaskList listC = new TaskList("Canteloupe", 0);
+		assertEquals(1, listC.compareTo(listB));
+		assertEquals(0, listC.compareTo(listC));
 	}
 }

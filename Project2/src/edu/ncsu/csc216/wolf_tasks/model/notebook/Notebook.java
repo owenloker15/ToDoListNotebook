@@ -5,6 +5,8 @@ package edu.ncsu.csc216.wolf_tasks.model.notebook;
 
 import java.io.File;
 
+import edu.ncsu.csc216.service_wolf.model.io.ServiceGroupWriter;
+import edu.ncsu.csc216.wolf_tasks.model.io.NotebookWriter;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.AbstractTaskList;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.ActiveTaskList;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.Task;
@@ -40,7 +42,11 @@ public class Notebook {
 	 * @param notebookName name of Notebook
 	 */
 	public Notebook(String notebookName) {
-		
+		setNotebookName(notebookName);
+		this.taskLists = new SortedList<TaskList>();
+		this.activeTaskList = new ActiveTaskList();
+		this.currentTaskList = activeTaskList;
+		this.isChanged = true;
 	}
 	
 	/**
@@ -48,7 +54,11 @@ public class Notebook {
 	 * @param notebookFile name of file to save to
 	 */
 	public void saveNotebook(File notebookFile) {
-		
+		if(this.currentTaskList == null || this.currentTaskList.getTasks().size() == 0) {
+			throw new IllegalArgumentException("Unable to save to file.");
+		}
+		NotebookWriter.writeNotebookFile(notebookFile, getNotebookName(), this.taskLists);
+		setChanged(false);
 	}
 
 	/**
@@ -80,6 +90,9 @@ public class Notebook {
 	 * @param notebookName the notebookName to set
 	 */
 	private void setNotebookName(String notebookName) {
+		if (notebookName == null || "".equals(notebookName) || "Active Tasks".equals(notebookName)) {
+			throw new IllegalArgumentException("Invalid name.");
+		}
 		this.notebookName = notebookName;
 	}
 
@@ -111,7 +124,9 @@ public class Notebook {
 	 * @param taskList to be added
 	 */
 	public void addTaskList(TaskList taskList) {
-		
+		if (taskList.getTaskListName().equals("Active Tasks")) {
+			
+		}
 	}
 	
 	/**
