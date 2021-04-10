@@ -16,7 +16,7 @@ import edu.ncsu.csc216.wolf_tasks.model.notebook.Notebook;
 public class NotebookReaderTest {
 
 	/**
-	 * Tests NotebookReader
+	 * Tests NotebookReader.
 	 */
 	@Test
 	public void testNotebookReader() {

@@ -30,7 +30,7 @@ public class NotebookReader {
 	
 	/**
 	 * Processes a Notebook from a text file
-	 * NOTE: Notebook is spelled wrong in the method signature as per Dr. Heckman on Piazza
+	 * NOTE: Notebook is spelled wrong in the method signature as per Dr. Heckman on Piazza.
 	 * @param fileName name of file to be processed
 	 * @return A notebook object
 	 */
