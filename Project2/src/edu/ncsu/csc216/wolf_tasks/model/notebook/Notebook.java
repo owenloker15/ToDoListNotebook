@@ -22,7 +22,7 @@ import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
 public class Notebook {
 	
 	/** SortedList of all TaskLists in the Notebook */
-	private SortedList<TaskList> taskLists; //may need to be AbstractTaskList
+	private ISortedList<TaskList> taskLists;
 	
 	/** List of all tasks marked as active */
 	private ActiveTaskList activeTaskList;
