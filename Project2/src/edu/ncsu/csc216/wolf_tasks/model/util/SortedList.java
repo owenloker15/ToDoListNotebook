@@ -71,7 +71,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	}
 	
 	private void recursiveAdd(ListNode current, E element) {
-		if (current.next == null) { //Base case – next is null
+		if (current.next == null) { //Base case next is null
 			current.next = new ListNode(element, current.next); //Add new node
 			size++; //Increment size
 		}

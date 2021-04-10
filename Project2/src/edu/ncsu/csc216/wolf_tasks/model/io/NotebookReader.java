@@ -4,6 +4,9 @@
 package edu.ncsu.csc216.wolf_tasks.model.io;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import edu.ncsu.csc216.wolf_tasks.model.notebook.Notebook;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.AbstractTaskList;
@@ -32,7 +35,35 @@ public class NotebookReader {
 	 * @return A notebook object
 	 */
 	public static Notebook readNodebookFile(File fileName) {
-		return null;
+		Scanner scan = null;
+		Notebook notebook = null;
+		String file = "";
+		try {
+			scan = new Scanner(new FileInputStream(fileName));
+			String firstLine = scan.nextLine();
+			String notebookName = firstLine.substring(2);
+			notebook = new Notebook(notebookName);
+			while (scan.hasNextLine()) {
+				file += scan.nextLine() + "\n";
+			}
+			
+			Scanner line = new Scanner(file);
+			Scanner listToken = null;
+			listToken = line.useDelimiter("\\r?\\n?[#]");
+			
+			while (listToken.hasNext()) {
+				String listString = listToken.next().trim();
+				TaskList taskList = processTaskList(listString);
+				notebook.addTaskList(taskList);
+			}
+			line.close();
+		} catch (FileNotFoundException e) {
+			throw new IllegalArgumentException("Unable to load file.");
+		}
+		
+		scan.close();
+		
+		return notebook;
 	}
 	
 	/**
@@ -41,7 +72,34 @@ public class NotebookReader {
 	 * @return TaskList object
 	 */
 	private static TaskList processTaskList(String taskList) {
-		return null;
+		Scanner scan = new Scanner(taskList);
+		String firstLine = scan.nextLine();
+		Scanner scanFL = new Scanner(firstLine);
+		Scanner listToken = scanFL.useDelimiter(",");
+		String listName = listToken.next();
+		int cc = listToken.nextInt();
+		listToken.close();
+		listName = listName.substring(0);
+		TaskList tl = new TaskList(listName, cc);
+		
+		scan.useDelimiter("\\r?\\n?[*]");
+		while (scan.hasNextLine()) {
+			String taskString = scan.next().trim();
+			Task task = processTask(tl, taskString);
+			listToken.close();
+			try {
+				task.addTaskList(tl);
+				tl.addTask(task);
+				listToken.close();
+			} catch (IllegalArgumentException e) {
+				listToken.close();
+				scan.close();
+				return null;
+			}
+		}
+		scan.close();
+		listToken.close();
+		return tl;
 	}
 	
 	/**
@@ -51,6 +109,38 @@ public class NotebookReader {
 	 * @return Task object
 	 */
 	private static Task processTask(AbstractTaskList taskList, String task) {
-		return null;
+		Scanner scan = new Scanner(task);
+		String taskString = scan.nextLine();
+		Scanner taskToken = scan.useDelimiter(",");
+		String name = taskToken.next();
+		String description = "";
+		while (scan.hasNextLine()) {
+			description += scan.nextLine();
+		}
+		boolean recurring = false;
+		boolean active = false;
+		if (taskToken.hasNext()) {
+			if (taskToken.next().equals("recurring")) {
+				recurring = true;
+			} else if (taskToken.next().equals("active")) {
+				active = true;
+			}
+		}
+		
+		if (taskToken.hasNext() && taskToken.next().equals("active")) {
+			active = true;
+		}
+		
+		Task newTask = null;
+		try {
+			newTask = new Task(name, description, recurring, active);
+		} catch (IllegalArgumentException e) {
+			taskToken.close();
+			scan.close();
+			return newTask;
+		}
+		taskToken.close();
+		scan.close();
+		return newTask;
 	}
 }

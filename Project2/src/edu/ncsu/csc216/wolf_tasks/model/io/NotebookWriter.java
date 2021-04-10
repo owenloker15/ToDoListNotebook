@@ -29,7 +29,7 @@ public class NotebookWriter {
 	 * @param notebookName name of notebook being converted to text
 	 * @param taskList SortedList of TasksLists in the Notebook
 	 */
-	public static void writeNotebookFile(File fileName, String notebookName, SortedList<TaskList> taskList) { //may need to be AbstractTaskList
+	public static void writeNotebookFile(File fileName, String notebookName, ISortedList<TaskList> taskList) { //may need to be AbstractTaskList
 		
 	}
 }
