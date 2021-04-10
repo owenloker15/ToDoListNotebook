@@ -179,7 +179,7 @@ public class Notebook {
 		TaskList temp = new TaskList(taskListName, getCurrentTaskList().getCompletedCount()); //changes current task list name; temporary task list with completed count of the current task list, just with new name
 		for(int i = 0; i < this.taskLists.size(); i++) { //removes the current task list to keep order
 			if(this.taskLists.get(i).getTaskListName().equals(getCurrentTaskList().getTaskListName())) {
-				this.taskLists.remove(i);
+				removeTaskList();
 			}
 		}
 		this.taskLists.add(temp); //adds the temp task list with new name to keep order
