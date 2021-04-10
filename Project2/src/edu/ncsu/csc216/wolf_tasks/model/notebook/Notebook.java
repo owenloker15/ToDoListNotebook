@@ -217,8 +217,8 @@ public class Notebook {
 			if (task.isActive()) {
 				getActiveTaskList();
 			}
+			setChanged(true);
 		}
-		setChanged(true);
 	}
 	
 	/**
@@ -244,7 +244,7 @@ public class Notebook {
 					}
 				}
 			}
+			setChanged(true);
 		}
-		setChanged(true);
 	}
 }

@@ -54,13 +54,13 @@ public class NotebookTest {
 	 * 
 	 */
 	@Test
-	public void testGetActiveTaskList() {
+	public void testGetActiveTaskList() { //need to figure out of we use book or task/list to add a task or tasklist
 		Notebook book = new Notebook("Book");
-		AbstractTaskList list = new TaskList("List", 0);
+		TaskList list = new TaskList("List", 0);
 		
 		Task task = new Task("CSC", "HW", false, true);
-		task.addTaskList(list);
-		list.addTask(task);
+		book.addTaskList(list);
+		book.addTask(task);
 		assertEquals("List", task.getTaskListName());
 		assertEquals(1, list.getTasks().size());
 		
@@ -79,7 +79,7 @@ public class NotebookTest {
 		list.addTask(task);
 		assertEquals(4, list.getTasks().size());
 		
-		book.get
+		
 //		book.addTask(new Task("CSC", "HW", false, true));
 //		assertEquals(1, book.getCurrentTaskList().getTasks().size());
 //		
