@@ -22,11 +22,7 @@ import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
 public class Notebook {
 	
 	/** SortedList of all TaskLists in the Notebook */
-<<<<<<< HEAD
 	private ISortedList<TaskList> taskLists;
-=======
-	private ISortedList<TaskList> taskLists; //may need to be AbstractTaskList
->>>>>>> branch 'main' of https://github.ncsu.edu/engr-csc216-spring2021/csc216-P2-T-44.git
 	
 	/** List of all tasks marked as active */
 	private ActiveTaskList activeTaskList;
@@ -181,11 +177,12 @@ public class Notebook {
 		}
 		
 		TaskList temp = new TaskList(taskListName, getCurrentTaskList().getCompletedCount()); //changes current task list name; temporary task list with completed count of the current task list, just with new name
-		for(int i = 0; i < this.taskLists.size(); i++) { //removes the current task list to keep order
-			if(this.taskLists.get(i).getTaskListName().equals(getCurrentTaskList().getTaskListName())) {
-				removeTaskList();
-			}
-		}
+		removeTaskList();
+//		for(int i = 0; i < this.taskLists.size(); i++) { //removes the current task list to keep order
+//			if(this.taskLists.get(i).getTaskListName().equals(getCurrentTaskList().getTaskListName())) {
+//				removeTaskList();
+//			}
+//		}
 		this.taskLists.add(temp); //adds the temp task list with new name to keep order
 		setCurrentTaskList(temp.getTaskListName());
 		setChanged(true);
@@ -195,7 +192,16 @@ public class Notebook {
 	 * Removes a TaskList form the Notebook
 	 */
 	public void removeTaskList() {
-		
+		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
+			throw new IllegalArgumentException("The Active Tasks list may not be deleted.");
+		}
+		for(int i = 0; i < this.taskLists.size(); i++) {
+			if(this.taskLists.get(i).getTaskListName().equals(getCurrentTaskList().getTaskListName())) {
+				this.taskLists.remove(i);
+			}
+		}
+		setCurrentTaskList(this.activeTaskList.getTaskListName());
+		setChanged(true);
 	}
 	
 	/**
@@ -203,7 +209,16 @@ public class Notebook {
 	 * @param task to be added
 	 */
 	public void addTask(Task task) {
-		
+		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
+			//do nothing
+		}
+		else {
+			getCurrentTaskList().addTask(task);
+			if (task.isActive()) {
+				getActiveTaskList();
+			}
+		}
+		setChanged(true);
 	}
 	
 	/**
@@ -215,6 +230,21 @@ public class Notebook {
 	 * @param active boolean value true if the task is active
 	 */
 	public void editTask(int idx, String taskName, String taskDescription, boolean recurring, boolean active) {
-		
+		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
+			//do nothing
+		}
+		else {
+			for(int i = 0; i < getCurrentTaskList().getTasks().size(); i++) {
+				if (i == idx) {
+					Task temp = new Task(taskName, taskDescription, recurring, active);
+					Task current = getCurrentTaskList().getTasks().get(i);
+					current = temp;
+					if (current.isActive()) {
+						getActiveTaskList();
+					}
+				}
+			}
+		}
+		setChanged(true);
 	}
 }
