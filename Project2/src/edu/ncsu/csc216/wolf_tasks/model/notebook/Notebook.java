@@ -22,7 +22,11 @@ import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
 public class Notebook {
 	
 	/** SortedList of all TaskLists in the Notebook */
+<<<<<<< HEAD
 	private ISortedList<TaskList> taskLists;
+=======
+	private ISortedList<TaskList> taskLists; //may need to be AbstractTaskList
+>>>>>>> branch 'main' of https://github.ncsu.edu/engr-csc216-spring2021/csc216-P2-T-44.git
 	
 	/** List of all tasks marked as active */
 	private ActiveTaskList activeTaskList;
@@ -45,7 +49,7 @@ public class Notebook {
 		this.taskLists = new SortedList<TaskList>();
 		this.activeTaskList = new ActiveTaskList();
 		this.currentTaskList = activeTaskList;
-		this.isChanged = true;
+		setChanged(true);
 	}
 	
 	/**
@@ -140,8 +144,9 @@ public class Notebook {
 		if (taskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
-//		this.taskLists.add(taskList);
-		// TODO
+		this.taskLists.add(taskList);
+		setCurrentTaskList(taskList.getTaskListName());
+		setChanged(true);
 	}
 	
 	/**
@@ -149,15 +154,41 @@ public class Notebook {
 	 * @return String array of TaskList names
 	 */
 	public String[] getTaskListsNames() {
-		return null;
+		String[] names = new String[this.taskLists.size()];
+		for(int i = 0; i < this.taskLists.size(); i++) {
+			names[i] = this.taskLists.get(i).getTaskListName();
+		}
 	}
 	
 	/**
-	 * Changes the name of a TaskList
+	 * Changes the name of a TaskList.
 	 * @param taskListName new name of TaskList
 	 */
 	public void editTaskList(String taskListName) {
+		if(getCurrentTaskList() == this.activeTaskList) {
+			throw new IllegalArgumentException();
+		}
+		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
+			throw new IllegalArgumentException();
+		}
+		for(int i = 0; i < this.taskLists.size(); i++) {
+			if(taskListName.equals(this.taskLists.get(i).getTaskListName())) {
+				throw new IllegalArgumentException();
+			}
+		}
+		if(getCurrentTaskList().getTaskListName().equals(taskListName)) {
+			throw new IllegalArgumentException();
+		}
 		
+		TaskList temp = new TaskList(taskListName, getCurrentTaskList().getCompletedCount()); //changes current task list name; temporary task list with completed count of the current task list, just with new name
+		for(int i = 0; i < this.taskLists.size(); i++) { //removes the current task list to keep order
+			if(this.taskLists.get(i).getTaskListName().equals(getCurrentTaskList().getTaskListName())) {
+				removeTaskList();
+			}
+		}
+		this.taskLists.add(temp); //adds the temp task list with new name to keep order
+		setCurrentTaskList(temp.getTaskListName());
+		setChanged(true);
 	}
 	
 	/**
