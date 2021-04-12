@@ -37,7 +37,7 @@ public class NotebookWriterTest {
 		n.addTaskList(tl2);
 		n.addTask(t2);
 		
-		ISortedList<TaskList> tasklists = n.getTaskLists();
+		ISortedList<TaskList> tasklists = null;
 		
 		File filename = new File("test-files/test_output1.txt");
 		NotebookWriter.writeNotebookFile(filename, n.getNotebookName(), tasklists);

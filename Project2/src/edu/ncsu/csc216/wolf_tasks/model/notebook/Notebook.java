@@ -216,6 +216,7 @@ public class Notebook {
 		}
 		else {
 			getCurrentTaskList().addTask(task);
+			task.addTaskList(getCurrentTaskList());
 			if (task.isActive()) {
 				getActiveTaskList();
 			}

@@ -31,9 +31,9 @@ public class ActiveTaskList extends AbstractTaskList {
 		if (task == null) {
 			throw new IllegalArgumentException();
 		}
-		ISwapList<Task> tasks = this.getTasks();
+//		ISwapList<Task> tasks = this.getTasks();
 		if(task.isActive()) {
-			tasks.add(task);
+			super.addTask(task);
 		}
 		else {
 			throw new IllegalArgumentException("Cannot add task to Active Tasks.");
