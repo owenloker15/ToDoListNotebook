@@ -75,7 +75,7 @@ public abstract class AbstractTaskList {
 	 * Adds a task to the TaskList
 	 * @param task to be added
 	 */
-	public void addTask(Task task) {
+	public void addTask(Task task) { 
 //		task.addTaskList(this);
 		this.tasks.add(task);
 	}

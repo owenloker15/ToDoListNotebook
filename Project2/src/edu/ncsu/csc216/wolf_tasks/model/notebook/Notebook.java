@@ -118,7 +118,7 @@ public class Notebook {
 	/**
 	 * Gets the ActiveTaskList
 	 */
-	private void getActiveTaskList() {
+	private void getActiveTaskList() { 
 		this.activeTaskList = null;
 		
 		for (int i = 0; i < this.taskLists.size(); i++) {

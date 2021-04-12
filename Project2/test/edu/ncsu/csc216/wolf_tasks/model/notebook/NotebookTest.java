@@ -60,7 +60,7 @@ public class NotebookTest {
 		
 		Task task = new Task("CSC", "HW", false, true);
 		book.addTaskList(list);
-		book.addTask(task);
+		book.addTask(task); 
 		assertEquals("List", task.getTaskListName());
 		assertEquals(1, list.getTasks().size());
 		

@@ -27,7 +27,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * Adds a task to the Active TaskList
 	 */
 	@Override
-	public void addTask(Task task) {
+	public void addTask(Task task) { 
 		if (task == null) {
 			throw new IllegalArgumentException();
 		}
