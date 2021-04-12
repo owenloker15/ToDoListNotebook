@@ -3,7 +3,7 @@
  */
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
 
-import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
+import edu.ncsu.csc216.wolf_tasks.model.util.ISwapList;
 
 /**
  * Child class of AbstractTaskList. A TaskList of all tasks in the Notebook that are marked as Active
@@ -28,7 +28,10 @@ public class ActiveTaskList extends AbstractTaskList {
 	 */
 	@Override
 	public void addTask(Task task) {
-		SwapList<Task> tasks = (SwapList<Task>) this.getTasks();
+		if (task == null) {
+			throw new IllegalArgumentException();
+		}
+		ISwapList<Task> tasks = this.getTasks();
 		if(task.isActive()) {
 			tasks.add(task);
 		}
@@ -56,7 +59,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * @return 2D string array of tasks
 	 */
 	public String[][] getTasksAsArray() {
-		SwapList<Task> tasks = (SwapList<Task>) this.getTasks();
+		ISwapList<Task> tasks = this.getTasks();
 		String[][] taskArray = new String[tasks.size()][tasks.size()];
 		for (int i = 0; i < tasks.size(); i++) {
 			taskArray[i][0] = tasks.get(i).getTaskListName();
@@ -69,7 +72,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * Clears the tasks from the list
 	 */
 	public void clearTasks() {
-		SwapList<Task> tasks = (SwapList<Task>) this.getTasks();
+		ISwapList<Task> tasks = this.getTasks();
 		for(int i = 0; i < tasks.size(); i++) {
 			tasks.remove(i);
 		}

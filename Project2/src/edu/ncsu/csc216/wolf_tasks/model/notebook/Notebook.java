@@ -122,10 +122,11 @@ public class Notebook {
 		this.activeTaskList = null;
 		
 		for (int i = 0; i < this.taskLists.size(); i++) {
-			TaskList list = (TaskList) this.taskLists.get(i);
+			TaskList list = this.taskLists.get(i);
 			for (int j = 0; j < list.getTasks().size(); j++) {
 				if(list.getTasks().get(j).isActive()) {
-					this.activeTaskList.addTask(list.getTasks().get(j));
+					Task temp = list.getTasks().get(j);
+					this.activeTaskList.addTask(temp);
 				}
 			}
 		}
