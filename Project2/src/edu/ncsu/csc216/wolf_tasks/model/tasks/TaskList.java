@@ -10,7 +10,7 @@ import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
  * @author owenloker
  * @author magolden
  */
-public class TaskList extends AbstractTaskList {
+public class TaskList extends AbstractTaskList implements Comparable<TaskList> {
 	
 	/**
 	 * TaskList Constructor

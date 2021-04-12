@@ -110,24 +110,22 @@ public class NotebookReader {
 	 */
 	private static Task processTask(AbstractTaskList taskList, String task) {
 		Scanner scan = new Scanner(task);
-		String taskString = scan.nextLine();
-		Scanner taskToken = scan.useDelimiter(",");
+		String firstLine = scan.nextLine();
+		Scanner fl = new Scanner(firstLine);
+		Scanner taskToken = fl.useDelimiter(",");
 		String name = taskToken.next();
 		String description = "";
 		while (scan.hasNextLine()) {
-			description += scan.nextLine();
+			description += scan.nextLine() + "/n";
 		}
 		boolean recurring = false;
 		boolean active = false;
-		if (taskToken.hasNext()) {
-			if (taskToken.next().equals("recurring")) {
-				recurring = true;
-			} else if (taskToken.next().equals("active")) {
-				active = true;
-			}
+		
+		if (firstLine.contains("recurring")) {
+			recurring = true;
 		}
 		
-		if (taskToken.hasNext() && taskToken.next().equals("active")) {
+		if (firstLine.contains("active")) {
 			active = true;
 		}
 		

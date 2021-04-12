@@ -74,7 +74,7 @@ public class Notebook {
 	 */
 	public void setCurrentTaskList(String taskListName) {
 		for (int i = 0; i < this.taskLists.size(); i++) {
-			TaskList list = (TaskList) this.taskLists.get(i);
+			TaskList list = this.taskLists.get(i);
 			if (taskListName.equals(list.getTaskListName())) {
 				this.currentTaskList = list;
 			}
@@ -117,7 +117,6 @@ public class Notebook {
 
 	/**
 	 * Gets the ActiveTaskList
-	 * @return the activeTaskList
 	 */
 	private void getActiveTaskList() {
 		this.activeTaskList = null;
@@ -154,6 +153,8 @@ public class Notebook {
 		for(int i = 0; i < this.taskLists.size(); i++) {
 			names[i] = this.taskLists.get(i).getTaskListName();
 		}
+		
+		return names;
 	}
 	
 	/**
