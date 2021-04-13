@@ -134,8 +134,8 @@ public class Task implements Cloneable {
 		}
 		
 		boolean isRegistered = false;
-		for (int i = 0; i < taskList.getTasks().size(); i++) {
-			if (this.equals(taskList.getTask(i))) {
+		for (int i = 0; i < this.taskLists.size(); i++) {
+			if (this.taskLists.get(i) == taskList) {
 				isRegistered = true;
 			}
 		}

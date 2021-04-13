@@ -119,7 +119,7 @@ public class Notebook {
 	 * Gets the ActiveTaskList
 	 */
 	private void getActiveTaskList() { 
-		this.activeTaskList = null;
+		this.activeTaskList.clearTasks();
 		
 		for (int i = 0; i < this.taskLists.size(); i++) {
 			TaskList list = this.taskLists.get(i);
@@ -211,17 +211,24 @@ public class Notebook {
 	 * @param task to be added
 	 */
 	public void addTask(Task task) {
-		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
-			//do nothing
-		}
-		else {
+		if (getCurrentTaskList() instanceof TaskList) {
 			getCurrentTaskList().addTask(task);
-			task.addTaskList(getCurrentTaskList());
 			if (task.isActive()) {
 				getActiveTaskList();
 			}
 			setChanged(true);
 		}
+//		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
+//			//do nothing
+//		}
+//		else {
+//			getCurrentTaskList().addTask(task);
+////			task.addTaskList(getCurrentTaskList());
+//			if (task.isActive()) {
+//				getActiveTaskList();
+//			}
+//			setChanged(true);
+//		}
 	}
 	
 	/**
