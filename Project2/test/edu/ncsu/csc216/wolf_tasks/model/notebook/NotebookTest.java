@@ -121,4 +121,32 @@ public class NotebookTest {
 		book.editTaskList("New List");
 		assertEquals("New List", book.getCurrentTaskList().getTaskListName());
 	}
+	
+	/** Tests editTask method
+	 * 
+	 */
+	@Test
+	public void testEditTask() {
+		Notebook book = new Notebook("Book");
+		TaskList list = new TaskList("List", 0);
+		
+		Task task = new Task("CSC", "HW", false, true);
+		book.addTaskList(list);
+		book.addTask(task); 
+		assertEquals("List", task.getTaskListName());
+		assertEquals(1, list.getTasks().size());
+		
+		Task task1 = new Task("Math", "Studying", true, true);
+		book.addTaskList(list);
+		book.addTask(task1);
+		assertEquals(2, list.getTasks().size());
+		
+		assertEquals("List", book.getCurrentTaskList().getTaskListName());
+		
+		book.editTask(0, "CSC1", "HW1", true, true);
+		assertEquals("CSC1", task.getTaskName());
+		assertEquals("HW1", task.getTaskDescription());
+		assertTrue(task.isRecurring());
+		assertTrue(task.isActive());
+	}
 }

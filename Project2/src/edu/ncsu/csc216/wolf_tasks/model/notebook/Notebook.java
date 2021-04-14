@@ -246,10 +246,11 @@ public class Notebook {
 		else {
 			for(int i = 0; i < getCurrentTaskList().getTasks().size(); i++) {
 				if (i == idx) {
-					Task temp = new Task(taskName, taskDescription, recurring, active);
-					Task current = getCurrentTaskList().getTasks().get(i);
-					current = temp;
-					if (current.isActive()) {
+					getCurrentTaskList().getTasks().get(i).setTaskName(taskName);
+					getCurrentTaskList().getTasks().get(i).setTaskDescription(taskDescription);
+					getCurrentTaskList().getTasks().get(i).setRecurring(recurring);
+					getCurrentTaskList().getTasks().get(i).setActive(active);
+					if (getCurrentTaskList().getTasks().get(i).isActive()) {
 						getActiveTaskList();
 					}
 				}
