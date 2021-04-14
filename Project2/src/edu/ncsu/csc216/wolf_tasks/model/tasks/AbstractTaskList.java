@@ -26,6 +26,7 @@ public abstract class AbstractTaskList {
 	 * AbstractTaskList Constructor
 	 * @param taskListName name of TaskList
 	 * @param completedCount tally of complete tasks
+	 * @throws IllegalArgumentException if the completed count is negative
 	 */
 	public AbstractTaskList(String taskListName, int completedCount) {
 		if (completedCount < 0) {
@@ -47,6 +48,7 @@ public abstract class AbstractTaskList {
 	/**
 	 * Sets the name of the TaskList
 	 * @param taskListName the taskListName to set
+	 * @throws IllegalArgumentException if the task list name is null or empty
 	 */
 	public void setTaskListName(String taskListName) {
 		if (taskListName == null || "".equals(taskListName)) {

@@ -54,6 +54,7 @@ public class Task implements Cloneable {
 	/**
 	 * Sets the task name
 	 * @param taskName the taskName to set
+	 * @throws IllegalArgumentException if the task name is null or empty
 	 */
 	public void setTaskName(String taskName) {
 		if(taskName == null || "".equals(taskName)) {
@@ -73,6 +74,7 @@ public class Task implements Cloneable {
 	/**
 	 * Sets the task description
 	 * @param taskDescription the taskDescpription to set
+	 * @throws IllegalArgumentException if the task description is null
 	 */
 	public void setTaskDescription(String taskDescription) {
 		if(taskDescription == null) {
@@ -127,6 +129,7 @@ public class Task implements Cloneable {
 	/**
 	 * Adds a task list
 	 * @param taskList tasklist to be added
+	 * @throws IllegalArgumentException if the tasklist is null
 	 */
 	public void addTaskList(AbstractTaskList taskList) {
 		if (taskList == null) {
@@ -148,15 +151,7 @@ public class Task implements Cloneable {
 	/**
 	 * Marks a task as complete
 	 */
-	public void completeTask() {
-//		for (int i = 0; i < this.taskLists.size(); i++) {
-//			for (int j = 0; j < this.taskLists.get(i).getTasks().size(); j++) {
-//				if (this.equals(this.taskLists.get(i).getTask(j))) {
-//					this.taskLists.get(i).completeTask(this);
-//				}
-//			}
-//		}
-		
+	public void completeTask() {		
 		Task clone = null;
 		if (this.isRecurring()) {
 			try {

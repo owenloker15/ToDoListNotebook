@@ -25,6 +25,8 @@ public class ActiveTaskList extends AbstractTaskList {
 	
 	/**
 	 * Adds a task to the Active TaskList
+	 * @throws IllegalArgumentException if the task is null
+	 * @throws IllegalArgumentException if the task is not active
 	 */
 	@Override
 	public void addTask(Task task) { 
@@ -43,6 +45,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	/**
 	 * Sets the name of the tasklist
 	 * @param taskListName name of tasklist
+	 * @throws IllegalArgumentException if the task list name is set to anything other than "Active Tasks"
 	 */
 	@Override
 	public void setTaskListName(String taskListName) {

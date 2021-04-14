@@ -49,6 +49,7 @@ public class SwapList<E> implements ISwapList<E> {
 	/**
 	 * Checks the element at a specified index
 	 * @param idx index to check
+	 * @throws IndexOutOfBoundsException if the index is negative or greater than the size
 	 */
 	private void checkIndex(int idx) {
 		if (idx < 0 || idx >= size()) {
@@ -61,6 +62,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 * @param element element to add
 	 * @throws NullPointerException if element is null
 	 * @throws IllegalArgumentException if element cannot be added 
+	 * @throws NullPointerException if the element to be added is null
 	 */
 	@Override
 	public void add(E element) {

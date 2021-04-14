@@ -55,6 +55,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * @param element element to add
 	 * @throws NullPointerException if element is null
 	 * @throws IllegalArgumentException if element cannot be added 
+	 * @throws NullPointerException if the element to be added is null
 	 */
 	
 	@Override
@@ -81,29 +82,10 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		}
 	}
 	
-//	/**
-//	 * Adds the element to the list in sorted order.
-//	 * @param element element to add
-//	 * @throws NullPointerException if element is null
-//	 * @throws IllegalArgumentException if element cannot be added 
-//	 */
-//	public void add(E element) {
-//		ListNode current = front;
-//		if (front == null) {
-//	        front = new ListNode(element, current);
-//		}
-//		else {
-//			while (current.next != null) {
-//					current = current.next;
-//				}
-//				current.next = new ListNode(element, current);
-//			}
-//		size++;
-//	}
-	
 	/** 
 	 * Checks to see if the item at the specified index not a valid index
 	 * @param idx index to check
+	 * @throws IndexOutOfBoundsException if the index is negative or greater than the size
 	 */
 	private void checkIndex(int idx) {
 		if (idx < 0 || idx >= size()) {

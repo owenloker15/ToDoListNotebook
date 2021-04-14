@@ -51,6 +51,7 @@ public class Notebook {
 	/**
 	 * Utilizes NotebookWriter to save a notebook to a given file
 	 * @param notebookFile name of file to save to
+	 * @throws IllegalArgumentException if it is unable to save to a file.
 	 */
 	public void saveNotebook(File notebookFile) {
 		if(this.currentTaskList == null || this.currentTaskList.getTasks().size() == 0) {
@@ -97,6 +98,7 @@ public class Notebook {
 	/**
 	 * Sets the Notebook name
 	 * @param notebookName the notebookName to set
+	 * @throws IllegalArgumentException if the notebook name is invalid
 	 */
 	private void setNotebookName(String notebookName) {
 		if (notebookName == null || "".equals(notebookName) || "Active Tasks".equals(notebookName)) {
@@ -141,6 +143,7 @@ public class Notebook {
 	/**
 	 * Adds a TaskList to the Notebook
 	 * @param taskList to be added
+	 * @throws IllegalArgumentException if the tasklist is an active task list
 	 */
 	public void addTaskList(TaskList taskList) {
 		if (taskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
@@ -167,6 +170,10 @@ public class Notebook {
 	/**
 	 * Changes the name of a TaskList.
 	 * @param taskListName new name of TaskList
+	 * @throws IllegalArgumentException if the current task list is an active task list
+	 * @throws IllegalArgumentException if the current task list has the name of an active task list
+	 * @throws IllegalArgumentException if the task list name is already in the list of tasklists
+	 * @throws IllegalArgumentException if the task list name is the name of the current task list
 	 */
 	public void editTaskList(String taskListName) {
 		if(getCurrentTaskList() == this.activeTaskList) {
@@ -186,11 +193,6 @@ public class Notebook {
 		
 		TaskList temp = new TaskList(taskListName, getCurrentTaskList().getCompletedCount()); //changes current task list name; temporary task list with completed count of the current task list, just with new name
 		removeTaskList();
-//		for(int i = 0; i < this.taskLists.size(); i++) { //removes the current task list to keep order
-//			if(this.taskLists.get(i).getTaskListName().equals(getCurrentTaskList().getTaskListName())) {
-//				removeTaskList();
-//			}
-//		}
 		this.taskLists.add(temp); //adds the temp task list with new name to keep order
 		setCurrentTaskList(temp.getTaskListName());
 		setChanged(true);
@@ -198,6 +200,7 @@ public class Notebook {
 	
 	/**
 	 * Removes a TaskList form the Notebook
+	 * @throws IllegalArgumentException if the current task list has the name of an active task list
 	 */
 	public void removeTaskList() {
 		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
@@ -224,17 +227,6 @@ public class Notebook {
 			}
 			setChanged(true);
 		}
-//		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
-//			//do nothing
-//		}
-//		else {
-//			getCurrentTaskList().addTask(task);
-////			task.addTaskList(getCurrentTaskList());
-//			if (task.isActive()) {
-//				getActiveTaskList();
-//			}
-//			setChanged(true);
-//		}
 	}
 	
 	/**
