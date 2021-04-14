@@ -57,6 +57,14 @@ public class NotebookTest {
 	public void testGetActiveTaskList() { //need to figure out of we use book or task/list to add a task or tasklist
 		Notebook book = new Notebook("Book");
 		TaskList list = new TaskList("List", 0);
+		TaskList tst;
+		try {
+			tst = new TaskList("Active Tasks", 0);
+			book.addTaskList(tst);
+		}
+		catch(IllegalArgumentException e) {
+			assertEquals("Invalid name.", e.getMessage());
+		}
 		
 		Task task = new Task("CSC", "HW", false, true);
 		book.addTaskList(list);
@@ -79,13 +87,38 @@ public class NotebookTest {
 		book.addTask(task3);
 		assertEquals(4, list.getTasks().size());
 		
-//		book.addTask(new Task("CSC", "HW", false, true));
-//		assertEquals(1, book.getCurrentTaskList().getTasks().size());
-//		
-//		book.addTask(new Task("Math", "Studying", true, true));
-//		assertEquals(2, book.getCurrentTaskList().getTasks().size());
-//		
-//		book.addTask(new Task("English", "Tutoring", false, true));
-//		assertEquals(3, book.getCurrentTaskList().getTasks().size());
+		
+	}
+	
+	/** Tests removeTaskList method
+	 * 
+	 */
+	@Test
+	public void testRemoveTaskList() {
+		Notebook book = new Notebook("Book");
+		TaskList list = new TaskList("List", 0);
+		TaskList tst = new TaskList("Test", 0);
+		
+		book.addTaskList(tst);
+		assertEquals(1, book.getTaskListsNames().length);
+		assertEquals("Test", book.getTaskListsNames()[0]);
+		book.removeTaskList();
+		
+		assertEquals(0, book.getTaskListsNames().length);
+		
+	}
+	
+	/** Tests editTaskList method
+	 * 
+	 */
+	@Test
+	public void testEditTaskList() {
+		Notebook book = new Notebook("Book");
+		TaskList list = new TaskList("List", 0);
+		book.addTaskList(list);
+		book.setCurrentTaskList("List");
+		assertEquals("List", book.getCurrentTaskList().getTaskListName());
+		book.editTaskList("New List");
+		assertEquals("New List", book.getCurrentTaskList().getTaskListName());
 	}
 }

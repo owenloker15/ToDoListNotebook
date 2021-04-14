@@ -75,7 +75,7 @@ public class Notebook {
 	public void setCurrentTaskList(String taskListName) {
 		for (int i = 0; i < this.taskLists.size(); i++) {
 			TaskList list = this.taskLists.get(i);
-			if (taskListName.equals(list.getTaskListName())) {
+			if (list.getTaskListName().equals(taskListName)) {
 				this.currentTaskList = list;
 			}
 		}
