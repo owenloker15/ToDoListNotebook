@@ -25,7 +25,7 @@ public class NotebookReader {
 	 * NotebookReader Constructor
 	 */
 	public NotebookReader() {
-		
+		// useless
 	}
 	
 	/**
@@ -79,7 +79,6 @@ public class NotebookReader {
 		String listName = listToken.next();
 		int cc = listToken.nextInt();
 		listToken.close();
-		listName = listName.substring(0);
 		TaskList tl = new TaskList(listName, cc);
 		
 		scan.useDelimiter("\\r?\\n?[*]");
@@ -114,9 +113,10 @@ public class NotebookReader {
 		Scanner fl = new Scanner(firstLine);
 		Scanner taskToken = fl.useDelimiter(",");
 		String name = taskToken.next();
+		taskToken.close();
 		String description = "";
 		while (scan.hasNextLine()) {
-			description += scan.nextLine() + "/n";
+			description += scan.nextLine() + "\n";
 		}
 		boolean recurring = false;
 		boolean active = false;

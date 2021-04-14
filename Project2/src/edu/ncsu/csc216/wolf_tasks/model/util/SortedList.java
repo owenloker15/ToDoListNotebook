@@ -8,6 +8,7 @@ package edu.ncsu.csc216.wolf_tasks.model.util;
  * Sorted Linked List of TaskLists
  * @author owenloker
  * @author magolden
+ * @param <E> type parameter for this class
  */
 public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	

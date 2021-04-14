@@ -7,6 +7,8 @@ package edu.ncsu.csc216.wolf_tasks.model.util;
  * Array based list that swaps order of its elements
  * @author owenloker
  * @author magolden
+ * 
+ * @param <E> type parameter for this class
  */
 public class SwapList<E> implements ISwapList<E> {
 	

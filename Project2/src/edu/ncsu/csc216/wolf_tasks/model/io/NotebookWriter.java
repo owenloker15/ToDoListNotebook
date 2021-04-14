@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 
 import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 import edu.ncsu.csc216.wolf_tasks.model.util.ISortedList;
-import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
 
 /**
  * Handles file output for the WolfTasks system. Creates a string representation of a notebook and writes it to a file.
@@ -23,7 +22,7 @@ public class NotebookWriter {
 	 * NotebookWriter Constructor
 	 */
 	public NotebookWriter() {
-		
+		// useless
 	}
 	
 	/**
@@ -40,12 +39,12 @@ public class NotebookWriter {
 			fos = new FileOutputStream(fileName);
             out = new PrintWriter(fos);
             
-            out.write("! " + notebookName);
+            out.write("! " + notebookName + "\n");
             for (int i = 0; i < taskList.size(); i++) {
-            	out.write("# " + taskList.get(i).getTaskListName() + taskList.get(i).getCompletedCount());
+            	out.write("# " + taskList.get(i).getTaskListName() + "," + taskList.get(i).getCompletedCount() + "\n");
             	
             	for (int j = 0; j < taskList.get(i).getTasks().size(); j++) {
-            		out.write("* " + taskList.get(i).getTasks().get(j).toString());
+            		out.write(taskList.get(i).getTasks().get(j).toString());
             	}
             }
             

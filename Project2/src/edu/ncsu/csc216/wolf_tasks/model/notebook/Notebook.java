@@ -79,6 +79,11 @@ public class Notebook {
 				this.currentTaskList = list;
 			}
 		}
+		
+		if (!getCurrentTaskList().getTaskListName().equals(taskListName)) {
+			getActiveTaskList();
+			this.currentTaskList = this.activeTaskList;
+		}
 	}
 
 	/**
@@ -109,6 +114,7 @@ public class Notebook {
 	}
 
 	/**
+	 * Sets the value of isChanged
 	 * @param isChanged the isChanged to set
 	 */
 	public void setChanged(boolean isChanged) {
@@ -240,10 +246,7 @@ public class Notebook {
 	 * @param active boolean value true if the task is active
 	 */
 	public void editTask(int idx, String taskName, String taskDescription, boolean recurring, boolean active) {
-		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
-			//do nothing
-		}
-		else {
+		if(!getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
 			for(int i = 0; i < getCurrentTaskList().getTasks().size(); i++) {
 				if (i == idx) {
 					getCurrentTaskList().getTasks().get(i).setTaskName(taskName);

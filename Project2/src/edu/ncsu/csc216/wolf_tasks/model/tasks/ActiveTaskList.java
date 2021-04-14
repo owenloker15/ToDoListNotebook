@@ -73,7 +73,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 */
 	public void clearTasks() {
 		ISwapList<Task> tasks = this.getTasks();
-		for(int i = 0; i < tasks.size(); i++) {
+		for(int i = tasks.size() - 1; i >= 0; i--) {
 			super.removeTask(i);
 		}
 	}

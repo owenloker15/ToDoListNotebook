@@ -6,8 +6,6 @@ import static org.junit.Assert.assertTrue;
 //
 import org.junit.Test;
 
-import edu.ncsu.csc216.wolf_tasks.model.tasks.AbstractTaskList;
-import edu.ncsu.csc216.wolf_tasks.model.tasks.ActiveTaskList;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.Task;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 
@@ -51,7 +49,7 @@ public class NotebookTest {
 	}
 	
 	/**
-	 * 
+	 * Test GetActiveTaskList
 	 */
 	@Test
 	public void testGetActiveTaskList() { //need to figure out of we use book or task/list to add a task or tasklist
@@ -96,7 +94,6 @@ public class NotebookTest {
 	@Test
 	public void testRemoveTaskList() {
 		Notebook book = new Notebook("Book");
-		TaskList list = new TaskList("List", 0);
 		TaskList tst = new TaskList("Test", 0);
 		
 		book.addTaskList(tst);
