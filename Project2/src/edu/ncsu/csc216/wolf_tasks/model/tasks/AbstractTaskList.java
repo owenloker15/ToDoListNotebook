@@ -66,8 +66,8 @@ public abstract class AbstractTaskList {
 	}
 
 	/**
-	 * Gets the completeCount
-	 * @return completeCount number of completed tasks
+	 * Gets the completedCount
+	 * @return completedCount number of completed tasks
 	 */
 	public int getCompletedCount() {
 		return this.completedCount;

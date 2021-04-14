@@ -149,7 +149,7 @@ public class Task implements Cloneable {
 	}
 	
 	/**
-	 * Marks a task as complete
+	 * Marks a task as complete. If the task is recurring, add a clone to its same task list
 	 */
 	public void completeTask() {		
 		Task clone = null;
@@ -208,6 +208,7 @@ public class Task implements Cloneable {
 
 	/**
 	 * Overridden toString for Task
+	 * @return string representation of a Task
 	 */
 	@Override
 	public String toString() {

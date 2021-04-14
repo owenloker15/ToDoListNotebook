@@ -53,7 +53,6 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	/**
 	 * Adds the element to the list in sorted order.
 	 * @param element element to add
-	 * @throws NullPointerException if element is null
 	 * @throws IllegalArgumentException if element cannot be added 
 	 * @throws NullPointerException if the element to be added is null
 	 */
@@ -72,6 +71,11 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		}
 	}
 	
+	/**
+	 * Recursive helper method for adding to the LinkedSortedList
+	 * @param current listnode to add to
+	 * @param element element to be added
+	 */
 	private void recursiveAdd(ListNode current, E element) {
 		if (current.next == null) { //Base case next is null
 			current.next = new ListNode(element, current.next); //Add new node
@@ -106,11 +110,10 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * Returns the element from the given index.  The element is
 	 * removed from the list.
 	 * @param idx index to remove element from
-	 * @return element at given index
+	 * @return removed element at given index that was removed
 	 * @throws IndexOutOfBoundsException if the idx is out of bounds
 	 * 		for the list
 	 */
-	
 	@Override
 	public E remove(int idx) {
 		checkIndex(idx);
@@ -141,7 +144,12 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		return contains(front, element);
 	}
 	
-	
+	/**
+	 * Private helper method for searching a list for a given element
+	 * @param current current listnode
+	 * @param element element to search for
+	 * @return true is the element was found, false otherwises
+	 */
 	private boolean contains(ListNode current, E element) {
 		if (current == null) {
 			return false;
@@ -160,7 +168,6 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * @throws IndexOutOfBoundsException if the idx is out of bounds
 	 * 		for the list
 	 */
-	
 	@Override
 	public E get(int idx) {
 		checkIndex(idx);

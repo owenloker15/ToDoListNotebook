@@ -51,7 +51,7 @@ public class Notebook {
 	/**
 	 * Utilizes NotebookWriter to save a notebook to a given file
 	 * @param notebookFile name of file to save to
-	 * @throws IllegalArgumentException if it is unable to save to a file.
+	 * @throws IllegalArgumentException with the message "Unable to save to file." if the current task list is null or empty
 	 */
 	public void saveNotebook(File notebookFile) {
 		if(this.currentTaskList == null || this.currentTaskList.getTasks().size() == 0) {
@@ -98,7 +98,7 @@ public class Notebook {
 	/**
 	 * Sets the Notebook name
 	 * @param notebookName the notebookName to set
-	 * @throws IllegalArgumentException if the notebook name is invalid
+	 * @throws IllegalArgumentException if the notebook name is null, empty, or the same as the active task list name
 	 */
 	private void setNotebookName(String notebookName) {
 		if (notebookName == null || "".equals(notebookName) || "Active Tasks".equals(notebookName)) {
@@ -124,7 +124,7 @@ public class Notebook {
 	}
 
 	/**
-	 * Gets the ActiveTaskList
+	 * Refreshes the ActiveTaskList
 	 */
 	private void getActiveTaskList() { 
 		this.activeTaskList.clearTasks();
@@ -143,7 +143,7 @@ public class Notebook {
 	/**
 	 * Adds a TaskList to the Notebook
 	 * @param taskList to be added
-	 * @throws IllegalArgumentException if the tasklist is an active task list
+	 * @throws IllegalArgumentException if the tasklist name is the name of the active task list
 	 */
 	public void addTaskList(TaskList taskList) {
 		if (taskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
@@ -156,7 +156,7 @@ public class Notebook {
 	
 	/**
 	 * Gets the names of all the TaskLists as a String array
-	 * @return String array of TaskList names
+	 * @return names String array of TaskList names
 	 */
 	public String[] getTaskListsNames() {
 		String[] names = new String[this.taskLists.size()];

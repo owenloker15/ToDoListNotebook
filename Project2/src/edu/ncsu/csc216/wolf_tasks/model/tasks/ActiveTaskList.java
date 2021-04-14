@@ -59,7 +59,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	
 	/**
 	 * Gets the tasks in the list as a 2D String array
-	 * @return 2D string array of tasks
+	 * @return taskArray 2D string array of tasks
 	 */
 	public String[][] getTasksAsArray() {
 		ISwapList<Task> tasks = this.getTasks();
