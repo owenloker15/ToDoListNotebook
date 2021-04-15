@@ -161,7 +161,8 @@ public class Notebook {
 	public String[] getTaskListsNames() {
 		String[] names = new String[this.taskLists.size()];
 		for(int i = 0; i < this.taskLists.size(); i++) {
-			names[i] = this.taskLists.get(i).getTaskListName();
+			names[0] = this.activeTaskList.getTaskListName();
+			names[i + 1] = this.taskLists.get(i).getTaskListName();
 		}
 		
 		return names;
