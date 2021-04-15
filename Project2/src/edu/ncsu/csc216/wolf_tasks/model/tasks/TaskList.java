@@ -6,7 +6,7 @@ package edu.ncsu.csc216.wolf_tasks.model.tasks;
 import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
 
 /**
- * A TaskList object in the WolfTasks system. A list of task objects. Extends AbstractTaskList
+ * A TaskList object in the WolfTasks system. A list of task objects. Extends AbstractTaskList. Implements Comparable
  * @author owenloker
  * @author magolden
  */
@@ -23,7 +23,7 @@ public class TaskList extends AbstractTaskList implements Comparable<TaskList> {
 	
 	/**
 	 * Gets the tasklist's tasks as a 2D string array
-	 * @return 2D array of tasks
+	 * @return taskAray 2D array of tasks
 	 */
 	public String[][] getTasksAsArray() {
 		SwapList<Task> tasks = (SwapList<Task>) this.getTasks();

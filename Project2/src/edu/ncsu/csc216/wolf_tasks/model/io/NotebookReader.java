@@ -32,7 +32,8 @@ public class NotebookReader {
 	 * Processes a Notebook from a text file
 	 * NOTE: Notebook is spelled wrong in the method signature as per Dr. Heckman on Piazza.
 	 * @param fileName name of file to be processed
-	 * @return A notebook object
+	 * @return notebook object built from file
+	 * @throws IllegalArgumentException with the message "Unable to load file." if the file cannot be loaded
 	 */
 	public static Notebook readNodebookFile(File fileName) {
 		Scanner scan = null;

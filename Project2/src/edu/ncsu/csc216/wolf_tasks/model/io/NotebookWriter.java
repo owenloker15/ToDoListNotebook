@@ -30,8 +30,9 @@ public class NotebookWriter {
 	 * @param fileName name of file to be created
 	 * @param notebookName name of notebook being converted to text
 	 * @param taskList SortedList of TasksLists in the Notebook
+	 * @throws IllegalArgumentException with the message "Unable to save file." if th file path is invalid
 	 */
-	public static void writeNotebookFile(File fileName, String notebookName, ISortedList<TaskList> taskList) { //may need to be AbstractTaskList
+	public static void writeNotebookFile(File fileName, String notebookName, ISortedList<TaskList> taskList) {
 		FileOutputStream fos = null;
 		PrintWriter out = null;
 		

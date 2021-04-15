@@ -60,7 +60,6 @@ public class SwapList<E> implements ISwapList<E> {
 	/**
 	 * Adds the element to the end of the list.
 	 * @param element element to add
-	 * @throws NullPointerException if element is null
 	 * @throws IllegalArgumentException if element cannot be added 
 	 * @throws NullPointerException if the element to be added is null
 	 */
@@ -161,7 +160,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 * Returns the element from the given index.  The element is
 	 * removed from the list.
 	 * @param idx index to remove element from
-	 * @return element at given index
+	 * @return removed element at given index that was removed
 	 * @throws IndexOutOfBoundsException if the idx is out of bounds
 	 * 		for the list
 	 */
@@ -191,6 +190,4 @@ public class SwapList<E> implements ISwapList<E> {
 		checkIndex(idx);
 		return this.list[idx];
 	}
-	
-	
 }
