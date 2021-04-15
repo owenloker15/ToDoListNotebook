@@ -63,7 +63,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 */
 	public String[][] getTasksAsArray() {
 		ISwapList<Task> tasks = this.getTasks();
-		String[][] taskArray = new String[tasks.size()][2];
+		String[][] taskArray = new String[tasks.size()][2]; 
 		for (int i = 0; i < tasks.size(); i++) {
 			taskArray[i][0] = tasks.get(i).getTaskListName();
 			taskArray[i][1] = tasks.get(i).getTaskName();
