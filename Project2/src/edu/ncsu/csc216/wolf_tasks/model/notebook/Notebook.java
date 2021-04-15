@@ -159,13 +159,19 @@ public class Notebook {
 	 * @return names String array of TaskList names
 	 */
 	public String[] getTaskListsNames() {
-		String[] names = new String[this.taskLists.size() + 1];
+		String[] names = new String[this.taskLists.size()];
 		for(int i = 0; i < this.taskLists.size(); i++) {
-			names[0] = this.activeTaskList.getTaskListName();
-			names[i + 1] = this.taskLists.get(i).getTaskListName();
+			names[i] = this.taskLists.get(i).getTaskListName();
 		}
 		
 		return names;
+//		String[] names = new String[this.taskLists.size() + 1];
+//		for(int i = 0; i < this.taskLists.size(); i++) {
+//			names[0] = this.activeTaskList.getTaskListName();
+//			names[i + 1] = this.taskLists.get(i).getTaskListName();
+//		}
+//		
+//		return names;
 	}
 	
 	/**
