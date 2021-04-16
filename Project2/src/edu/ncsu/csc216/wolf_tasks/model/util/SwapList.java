@@ -83,10 +83,12 @@ public class SwapList<E> implements ISwapList<E> {
 	public void moveUp(int idx) {
 		checkIndex(idx);
 		
-		E moveUp = get(idx);
-		E moveDown = get(idx - 1);
-		this.list[idx - 1] = moveUp;
-		this.list[idx] = moveDown;
+		if (idx != 0) {
+			E moveUp = get(idx);
+			E moveDown = get(idx - 1);
+			this.list[idx - 1] = moveUp;
+			this.list[idx] = moveDown;
+		}
 	}
 
 	/**
@@ -100,10 +102,12 @@ public class SwapList<E> implements ISwapList<E> {
 	public void moveDown(int idx) {
 		checkIndex(idx);
 		
-		E moveDown = get(idx);
-		E moveUp = get(idx + 1);
-		this.list[idx] = moveUp;
-		this.list[idx + 1] = moveDown;
+		if (idx != this.size) {
+			E moveDown = get(idx);
+			E moveUp = get(idx + 1);
+			this.list[idx] = moveUp;
+			this.list[idx + 1] = moveDown;
+		}
 	}
 
 	/**
