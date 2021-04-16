@@ -102,7 +102,7 @@ public class SwapList<E> implements ISwapList<E> {
 	public void moveDown(int idx) {
 		checkIndex(idx);
 		
-		if (idx != this.size) {
+		if (idx != this.size - 1) {
 			E moveDown = get(idx);
 			E moveUp = get(idx + 1);
 			this.list[idx] = moveUp;
