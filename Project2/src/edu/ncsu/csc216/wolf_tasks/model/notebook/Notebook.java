@@ -193,14 +193,21 @@ public class Notebook {
 		if(getCurrentTaskList() == this.activeTaskList) {
 			throw new IllegalArgumentException("The Active Tasks list may not be edited.");
 		}
+		
 		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
 			throw new IllegalArgumentException();
 		}
+		
+		if(taskListName.equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
+			throw new IllegalArgumentException();
+		}
+		
 		for(int i = 0; i < this.taskLists.size(); i++) {
 			if(taskListName.equals(this.taskLists.get(i).getTaskListName())) {
 				throw new IllegalArgumentException();
 			}
 		}
+		
 		if(getCurrentTaskList().getTaskListName().equals(taskListName)) {
 			throw new IllegalArgumentException();
 		}
