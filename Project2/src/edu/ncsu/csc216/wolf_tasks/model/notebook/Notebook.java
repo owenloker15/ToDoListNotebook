@@ -159,6 +159,7 @@ public class Notebook {
 		this.taskLists.add(taskList);
 		setCurrentTaskList(taskList.getTaskListName());
 		setChanged(true);
+		getActiveTaskList();
 	}
 	
 	/**

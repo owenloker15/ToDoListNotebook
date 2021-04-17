@@ -67,6 +67,8 @@ public class NotebookReader {
 		
 		scan.close();
 		
+		
+		
 		return notebook;
 	}
 	
