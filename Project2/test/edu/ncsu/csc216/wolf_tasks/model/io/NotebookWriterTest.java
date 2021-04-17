@@ -45,9 +45,9 @@ public class NotebookWriterTest {
 		Notebook book = NotebookReader.readNodebookFile(filename);
 		
 		assertEquals("Test Notebook", book.getNotebookName());
-		assertEquals(2, book.getTaskListsNames().length);
-		assertEquals("Test TaskList 1", book.getTaskListsNames()[0]);
-		assertEquals("Test TaskList 2", book.getTaskListsNames()[1]);
+		assertEquals(3, book.getTaskListsNames().length);
+		assertEquals("Test TaskList 1", book.getTaskListsNames()[1]);
+		assertEquals("Test TaskList 2", book.getTaskListsNames()[2]);
 		
 		book.setCurrentTaskList("Test TaskList 1");
 		assertEquals(1, book.getCurrentTaskList().getTasks().size());

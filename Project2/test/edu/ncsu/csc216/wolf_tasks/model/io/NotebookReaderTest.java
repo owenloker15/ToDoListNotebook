@@ -32,10 +32,10 @@ public class NotebookReaderTest {
 		
 		// Test that all the correct TaskLists have been loaded
 		String[] tlNames = n.getTaskListsNames();
-		assertEquals(3, tlNames.length);
-		assertEquals("CSC 216", tlNames[0]);
-		assertEquals("CSC 226", tlNames[1]);
-		assertEquals("Habits", tlNames[2]);
+		assertEquals(4, tlNames.length);
+		assertEquals("CSC 216", tlNames[1]);
+		assertEquals("CSC 226", tlNames[2]);
+		assertEquals("Habits", tlNames[3]);
 		
 		// Test that each task in each TaskList is correct
 		n.setCurrentTaskList("CSC 216");

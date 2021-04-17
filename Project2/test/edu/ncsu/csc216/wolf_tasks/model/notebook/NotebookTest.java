@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 //
 import org.junit.Test;
 
+import edu.ncsu.csc216.wolf_tasks.model.tasks.ActiveTaskList;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.Task;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 
@@ -97,11 +98,12 @@ public class NotebookTest {
 		TaskList tst = new TaskList("Test", 0);
 		
 		book.addTaskList(tst);
-		assertEquals(1, book.getTaskListsNames().length);
-		assertEquals("Test", book.getTaskListsNames()[0]);
+		assertEquals(2, book.getTaskListsNames().length);
+		assertEquals(ActiveTaskList.ACTIVE_TASKS_NAME, book.getTaskListsNames()[0]);
+		assertEquals("Test", book.getTaskListsNames()[1]);
 		book.removeTaskList();
 		
-		assertEquals(0, book.getTaskListsNames().length);
+		assertEquals(1, book.getTaskListsNames().length);
 		
 	}
 	
