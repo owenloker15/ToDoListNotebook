@@ -165,14 +165,14 @@ public class NotebookTest {
 			book.addTaskList(list1);
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertEquals("Invalid name", e.getMessage());
+			assertEquals("Invalid name.", e.getMessage());
 		}
 		
 		try {
 			book.addTaskList(list2);
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertEquals("Invalid name", e.getMessage());
+			assertEquals("Invalid name.", e.getMessage());
 		}
 	}
 }
