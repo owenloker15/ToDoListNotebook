@@ -44,7 +44,7 @@ public class Notebook {
 		setNotebookName(notebookName);
 		this.taskLists = new SortedList<TaskList>();
 		this.activeTaskList = new ActiveTaskList();
-		this.currentTaskList = activeTaskList;
+		this.currentTaskList = this.activeTaskList;
 		setChanged(true);
 	}
 	
@@ -159,19 +159,19 @@ public class Notebook {
 	 * @return names String array of TaskList names
 	 */
 	public String[] getTaskListsNames() {
-		String[] names = new String[this.taskLists.size()];
-		for(int i = 0; i < this.taskLists.size(); i++) {
-			names[i] = this.taskLists.get(i).getTaskListName();
-		}
-		
-		return names;
-//		String[] names = new String[this.taskLists.size() + 1];
+//		String[] names = new String[this.taskLists.size()];
 //		for(int i = 0; i < this.taskLists.size(); i++) {
-//			names[0] = this.activeTaskList.getTaskListName();
-//			names[i + 1] = this.taskLists.get(i).getTaskListName();
+//			names[i] = this.taskLists.get(i).getTaskListName();
 //		}
 //		
 //		return names;
+		String[] names = new String[this.taskLists.size() + 1];
+		names[0] = this.activeTaskList.getTaskListName();
+		for(int i = 0; i < this.taskLists.size(); i++) {
+			names[i + 1] = this.taskLists.get(i).getTaskListName();
+		}
+		
+		return names;
 	}
 	
 	/**
@@ -184,7 +184,7 @@ public class Notebook {
 	 */
 	public void editTaskList(String taskListName) {
 		if(getCurrentTaskList() == this.activeTaskList) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The Active Tasks list may not be edited.");
 		}
 		if(getCurrentTaskList().getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
 			throw new IllegalArgumentException();
