@@ -6,6 +6,7 @@ package edu.ncsu.csc216.wolf_tasks.model.io;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.wolf_tasks.model.notebook.Notebook;
@@ -83,8 +84,13 @@ public class NotebookReader {
 		Scanner scanFL = new Scanner(firstLine);
 		Scanner listToken = scanFL.useDelimiter(",");
 		String listName = listToken.next();
-		int cc = listToken.nextInt();
-		listToken.close();
+		int cc = 0;
+		try {
+			cc = listToken.nextInt();
+		} catch (NoSuchElementException e) {
+			// ignore
+		}
+			listToken.close();
 		
 		if (cc < 0) {
 			scan.close();

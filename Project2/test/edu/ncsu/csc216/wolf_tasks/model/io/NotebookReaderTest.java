@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.wolf_tasks.model.notebook.Notebook;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.AbstractTaskList;
+import edu.ncsu.csc216.wolf_tasks.model.tasks.ActiveTaskList;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.Task;
 import edu.ncsu.csc216.wolf_tasks.model.util.ISwapList;
 
@@ -109,5 +110,8 @@ public class NotebookReaderTest {
 		assertEquals("Floss", t.get(1).getTaskName());
 		assertTrue(t.get(1).isRecurring());
 		assertTrue(t.get(1).isActive());
+		
+		n.setCurrentTaskList(ActiveTaskList.ACTIVE_TASKS_NAME);
+		assertEquals(5, n.getCurrentTaskList().getTasks().size());
 	}
 }
