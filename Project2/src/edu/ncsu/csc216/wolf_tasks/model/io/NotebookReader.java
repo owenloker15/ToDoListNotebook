@@ -42,6 +42,9 @@ public class NotebookReader {
 		try {
 			scan = new Scanner(new FileInputStream(fileName));
 			String firstLine = scan.nextLine();
+			if (firstLine.charAt(0) != '!') {
+				throw new IllegalArgumentException("Unable to load file.");
+			}
 			String notebookName = firstLine.substring(2);
 			notebook = new Notebook(notebookName);
 			while (scan.hasNextLine()) {
