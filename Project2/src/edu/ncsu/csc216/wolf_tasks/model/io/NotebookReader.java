@@ -88,7 +88,9 @@ public class NotebookReader {
 		try {
 			cc = listToken.nextInt();
 		} catch (NoSuchElementException e) {
-			// ignore
+			scanFL.close();
+			scan.close();
+			return null;
 		}
 			listToken.close();
 		
