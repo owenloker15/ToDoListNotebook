@@ -83,6 +83,12 @@ public class NotebookReader {
 		String listName = listToken.next();
 		int cc = listToken.nextInt();
 		listToken.close();
+		
+		if (cc < 0) {
+			scan.close();
+			return null;
+		}
+		
 		TaskList tl = new TaskList(listName, cc);
 		
 		scan.useDelimiter("\\r?\\n?[*]");
