@@ -63,7 +63,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		}
 		
 		if (contains(e)) {
-			throw new IllegalArgumentException("Cannot add duplicate element");
+			throw new IllegalArgumentException("Cannot add duplicate element.");
 		}
 		
 		ListNode newNode = new ListNode(e, null);

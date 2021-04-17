@@ -187,7 +187,7 @@ public class SortedListTest {
 			s.add("b");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertEquals("Cannot add duplicate element", e.getMessage());
+			assertEquals("Cannot add duplicate element.", e.getMessage());
 		}
 	}
 }
