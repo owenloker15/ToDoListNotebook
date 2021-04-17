@@ -202,6 +202,12 @@ public class Notebook {
 			throw new IllegalArgumentException("Invalid name.");
 		}
 		
+		for (int i = 0; i < this.taskLists.size(); i++) {
+			if (taskListName.equals(this.taskLists.get(i).getTaskListName())) {
+				throw new IllegalArgumentException("Invalid name.");
+			}
+		}
+		
 		for(int i = 0; i < this.taskLists.size(); i++) {
 			if(taskListName.equals(this.taskLists.get(i).getTaskListName())) {
 				throw new IllegalArgumentException();
