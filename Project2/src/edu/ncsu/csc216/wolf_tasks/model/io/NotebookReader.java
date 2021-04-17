@@ -104,7 +104,7 @@ public class NotebookReader {
 			tl = new TaskList(listName, cc);
 		} catch (IllegalArgumentException e) {
 			scan.close();
-			return null;
+			return tl;
 		}
 			
 		scan.useDelimiter("\\r?\\n?[*]");
