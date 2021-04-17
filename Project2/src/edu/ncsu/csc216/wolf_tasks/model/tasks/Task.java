@@ -221,7 +221,7 @@ public class Task implements Cloneable {
 			task += ",active";
 		}
 		
-		return "* " + task + "\n" + getTaskDescription() + "\n";
+		return "* " + task + "\n" + getTaskDescription();
 	}
 	
 	

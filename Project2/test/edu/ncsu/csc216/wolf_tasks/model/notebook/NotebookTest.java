@@ -71,17 +71,17 @@ public class NotebookTest {
 		assertEquals(1, list.getTasks().size());
 		
 		Task task1 = new Task("Math", "Studying", true, true);
-		book.addTaskList(list);
+//		book.addTaskList(list);
 		book.addTask(task1);
 		assertEquals(2, list.getTasks().size());
 		
 		Task task2 = new Task("English", "Tutoring", false, true);
-		book.addTaskList(list);
+//		book.addTaskList(list);
 		book.addTask(task2);
 		assertEquals(3, list.getTasks().size());
 		
 		Task task3 = new Task("Science", "Lab", false, false);
-		book.addTaskList(list);
+//		book.addTaskList(list);
 		book.addTask(task3);
 		assertEquals(4, list.getTasks().size());
 		
@@ -134,7 +134,7 @@ public class NotebookTest {
 		assertEquals(1, list.getTasks().size());
 		
 		Task task1 = new Task("Math", "Studying", true, true);
-		book.addTaskList(list);
+//		book.addTaskList(list);
 		book.addTask(task1);
 		assertEquals(2, list.getTasks().size());
 		

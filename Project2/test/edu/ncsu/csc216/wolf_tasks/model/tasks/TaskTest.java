@@ -89,16 +89,16 @@ public class TaskTest {
 	@Test
 	public void testToString() {
 		Task t1 = new Task("HW", "CSC", false, false);
-		assertEquals("* HW\nCSC\n", t1.toString());
+		assertEquals("* HW\nCSC", t1.toString());
 		
 		Task t2 = new Task("HW", "CSC", true, false);
-		assertEquals("* HW,recurring\nCSC\n", t2.toString());
+		assertEquals("* HW,recurring\nCSC", t2.toString());
 		
 		Task t3 = new Task("HW", "CSC", true, true);
-		assertEquals("* HW,recurring,active\nCSC\n", t3.toString());
+		assertEquals("* HW,recurring,active\nCSC", t3.toString());
 		
 		Task t4 = new Task("HW", "CSC", false, true);
-		assertEquals("* HW,active\nCSC\n", t4.toString());
+		assertEquals("* HW,active\nCSC", t4.toString());
 	}
 	
 	/** Tests completeTask method
