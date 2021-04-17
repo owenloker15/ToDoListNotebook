@@ -99,8 +99,14 @@ public class NotebookReader {
 //			return null;
 //		}
 		
-		TaskList tl = new TaskList(listName, cc);
-		
+		TaskList tl = null;
+		try {
+			tl = new TaskList(listName, cc);
+		} catch (IllegalArgumentException e) {
+			scan.close();
+			return null;
+		}
+			
 		scan.useDelimiter("\\r?\\n?[*]");
 		while (scan.hasNextLine()) {
 			String taskString = scan.next().trim();
