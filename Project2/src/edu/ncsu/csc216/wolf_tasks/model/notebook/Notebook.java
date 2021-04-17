@@ -149,6 +149,13 @@ public class Notebook {
 		if (taskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
+		
+		for (int i = 0; i < this.taskLists.size(); i++) {
+			if (taskList.getTaskListName().equals(this.taskLists.get(i).getTaskListName())) {
+				throw new IllegalArgumentException("Cannot add duplicate element.");
+			}
+		}
+		
 		this.taskLists.add(taskList);
 		setCurrentTaskList(taskList.getTaskListName());
 		setChanged(true);

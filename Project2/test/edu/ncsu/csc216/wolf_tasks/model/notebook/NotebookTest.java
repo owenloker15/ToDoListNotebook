@@ -2,6 +2,7 @@ package edu.ncsu.csc216.wolf_tasks.model.notebook;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 //
 import org.junit.Test;
@@ -147,5 +148,31 @@ public class NotebookTest {
 		assertEquals("HW1", task.getTaskDescription());
 		assertTrue(task.isRecurring());
 		assertTrue(task.isActive());
+	}
+	
+	/**
+	 * Test adding duplicate taskLists
+	 */
+	@Test
+	public void testAddDuplicate() {
+		Notebook book = new Notebook("Book");
+		TaskList list = new TaskList("List", 0);
+		TaskList list1 = new TaskList("List", 1);
+		TaskList list2 = new TaskList("List", 0);
+		
+		book.addTaskList(list);
+		try {
+			book.addTaskList(list1);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals("Cannot add duplicate element.", e.getMessage());
+		}
+		
+		try {
+			book.addTaskList(list2);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals("Cannot add duplicate element.", e.getMessage());
+		}
 	}
 }
