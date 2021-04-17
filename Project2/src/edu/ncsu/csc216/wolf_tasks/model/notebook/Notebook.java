@@ -199,7 +199,7 @@ public class Notebook {
 		}
 		
 		if(taskListName.equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid name.");
 		}
 		
 		for(int i = 0; i < this.taskLists.size(); i++) {
