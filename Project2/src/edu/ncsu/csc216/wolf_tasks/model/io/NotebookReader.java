@@ -84,7 +84,7 @@ public class NotebookReader {
 		Scanner scanFL = new Scanner(firstLine);
 		Scanner listToken = scanFL.useDelimiter(",");
 		String listName = listToken.next();
-		int cc = 0;
+		int cc = -1;
 		try {
 			cc = listToken.nextInt();
 		} catch (NoSuchElementException e) {
@@ -92,12 +92,12 @@ public class NotebookReader {
 //			scan.close();
 //			return null;
 		}
-			listToken.close();
+		listToken.close();
 		
-		if (cc < 0) {
-			scan.close();
-			return null;
-		}
+//		if (cc < 0) {
+//			scan.close();
+//			return null;
+//		}
 		
 		TaskList tl = new TaskList(listName, cc);
 		
