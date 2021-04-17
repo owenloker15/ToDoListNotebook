@@ -59,7 +59,9 @@ public class NotebookReader {
 			while (listToken.hasNext()) {
 				String listString = listToken.next().trim();
 				TaskList taskList = processTaskList(listString);
-				notebook.addTaskList(taskList);
+				if (taskList != null) {
+					notebook.addTaskList(taskList);
+				}
 			}
 			line.close();
 		} catch (FileNotFoundException e) {
@@ -112,14 +114,16 @@ public class NotebookReader {
 			String taskString = scan.next().trim();
 			Task task = processTask(tl, taskString);
 			listToken.close();
-			try {
-				task.addTaskList(tl);
-				tl.addTask(task);
-				listToken.close();
-			} catch (IllegalArgumentException e) {
-				listToken.close();
-				scan.close();
-				return null;
+			if (task != null) {
+				try {
+					task.addTaskList(tl);
+					tl.addTask(task);
+					listToken.close();
+				} catch (IllegalArgumentException e) {
+					listToken.close();
+					scan.close();
+					return null;
+				}
 			}
 		}
 		scan.close();
