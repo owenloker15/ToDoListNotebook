@@ -3,6 +3,7 @@ package edu.ncsu.csc216.wolf_tasks.model.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -63,10 +64,6 @@ public class SortedListTest {
 		s.add("9");
 		assertEquals("9", s.get(8));
 		assertEquals(9, s.size());
-		
-		s.add("10");
-		assertEquals("10", s.get(9));
-		assertEquals(10, s.size());
 	}
 	
 	/**
@@ -115,7 +112,7 @@ public class SortedListTest {
 	}
 	
 	/**
-	 * Test Remove
+	 * Test contains
 	 */
 	@Test
 	public void testContains() {
@@ -143,5 +140,54 @@ public class SortedListTest {
 		assertTrue(s.contains("2"));
 		assertTrue(s.contains("3"));
 		assertTrue(s.contains("4"));
+	}
+	
+	/**
+	 * Jenkins errors for sort
+	 */
+	@Test
+	public void sortFruit() {
+		SortedList<String> s = new SortedList<String>();
+		assertEquals(0, s.size());
+		
+		s.add("banana");
+		s.add("apple");
+		s.add("orange");
+		s.add("eggplant");
+		
+		assertEquals("apple", s.get(0));
+		assertEquals("banana", s.get(1));
+		assertEquals("eggplant", s.get(2));
+		assertEquals("orange", s.get(3));
+	}
+	
+	/**
+	 * Sanity check for sorting
+	 */
+	@Test
+	public void sortLetters() {
+		SortedList<String> s = new SortedList<String>();
+		assertEquals(0, s.size());
+		
+		s.add("d");
+		s.add("f");
+		s.add("a");
+		s.add("e");
+		s.add("c");
+		s.add("b");
+		
+		assertEquals("a", s.get(0));
+		assertEquals("b", s.get(1));
+		assertEquals("c", s.get(2));
+		assertEquals("d", s.get(3));
+		assertEquals("e", s.get(4));
+		assertEquals("f", s.get(5));
+		
+		try {
+			s.add("b");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals("Cannot add duplicate element", e.getMessage());
+		}
 	}
 }

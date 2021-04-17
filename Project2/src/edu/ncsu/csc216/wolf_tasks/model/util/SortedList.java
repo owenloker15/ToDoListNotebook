@@ -51,38 +51,41 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	}
 	
 	/**
-	 * Adds the element to the list in sorted order.
-	 * @param element element to add
-	 * @throws IllegalArgumentException if element cannot be added 
-	 * @throws NullPointerException if the element to be added is null
+	 * Adds a new element in the list in sorted order
+	 * @param e element to be added
+	 * @throws NullPointerException with the message "Cannot add null element." if the element is null
+	 * @throws IllegalArgumentException with the message "Cannot add duplicate element" if the element is a duplicate
 	 */
-	
 	@Override
-	public void add(E element) {
-		if (element == null) {
+	public void add (E e) {
+		if (e == null) {
 			throw new NullPointerException("Cannot add null element.");
 		}
-		if (front == null) { //Special case of adding to an empty list
-			front = new ListNode((E) element, front); //Update front to point to new node
-			size++; //Increment size
+		
+		if (contains(e)) {
+			throw new IllegalArgumentException("Cannot add duplicate element");
 		}
-		else {
-			recursiveAdd(front, (E) element); //Recursion when list has contents
-		}
-	}
-	
-	/**
-	 * Recursive helper method for adding to the LinkedSortedList
-	 * @param current listnode to add to
-	 * @param element element to be added
-	 */
-	private void recursiveAdd(ListNode current, E element) {
-		if (current.next == null) { //Base case next is null
-			current.next = new ListNode(element, current.next); //Add new node
-			size++; //Increment size
-		}
-		else {
-			recursiveAdd(current.next, element); //Recursion when list has contents
+		
+		ListNode newNode = new ListNode(e, null);
+		
+		if (front == null) {
+			front = newNode;
+			this.size++;
+		} else if (front.data.compareTo(newNode.data) > 0) {
+			newNode.next = front;
+			front = newNode;
+			this.size++;
+		} else {
+			ListNode current = front;
+			
+			while (current.next != null && current.next.data.compareTo(newNode.data) < 0) {
+				current = current.next;
+			}
+			
+			newNode.next = current.next; 
+			current.next = newNode;
+			
+			this.size++;
 		}
 	}
 	
@@ -148,10 +151,10 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * Private helper method for searching a list for a given element
 	 * @param current current listnode
 	 * @param element element to search for
-	 * @return true is the element was found, false otherwises
+	 * @return true is the element was found, false otherwise
 	 */
 	private boolean contains(ListNode current, E element) {
-		if (current == null) {
+		if (current == null || current.data == null) {
 			return false;
 		}
 		if (current.data == element) {
