@@ -114,4 +114,15 @@ public class NotebookReaderTest {
 		n.setCurrentTaskList(ActiveTaskList.ACTIVE_TASKS_NAME);
 		assertEquals(5, n.getCurrentTaskList().getTasks().size());
 	}
+	
+//	/**
+//	 * Test notebook2
+//	 */
+//	@Test
+//	public void testNotebook2() {
+//		File filename = new File("test-files/notebook2.txt");
+//		Notebook n = NotebookReader.readNodebookFile(filename);
+//		
+//		assertEquals(3, n.getTaskListsNames().length);
+//	}
 }
