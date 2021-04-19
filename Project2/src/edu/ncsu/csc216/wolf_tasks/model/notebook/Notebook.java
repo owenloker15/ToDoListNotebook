@@ -54,9 +54,9 @@ public class Notebook {
 	 * @throws IllegalArgumentException with the message "Unable to save to file." if the current task list is null or empty
 	 */
 	public void saveNotebook(File notebookFile) {
-		if(this.currentTaskList == null || this.currentTaskList.getTasks().size() == 0) {
-			throw new IllegalArgumentException("Unable to save to file.");
-		}
+//		if(this.currentTaskList == null || this.currentTaskList.getTasks().size() == 0) {
+//			throw new IllegalArgumentException("Unable to save to file.");
+//		}
 		NotebookWriter.writeNotebookFile(notebookFile, getNotebookName(), this.taskLists);
 		setChanged(false);
 	}
