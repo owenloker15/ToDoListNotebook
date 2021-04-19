@@ -121,14 +121,14 @@ public class NotebookReaderTest {
 		assertEquals(5, n.getCurrentTaskList().getTasks().size());
 	}
 	
-//	/**
-//	 * Test notebook2
-//	 */
-//	@Test
-//	public void testNotebook2() {
-//		File filename = new File("test-files/notebook2.txt");
-//		Notebook n = NotebookReader.readNodebookFile(filename);
-//		
-//		assertEquals(3, n.getTaskListsNames().length);
-//	}
+	/**
+	 * Test notebook7
+	 */
+	@Test
+	public void testNotebook7() {
+		File filename = new File("test-files/notebook7.txt");
+		Notebook n = NotebookReader.readNodebookFile(filename);
+		
+		assertEquals(1, n.getCurrentTaskList().getTasks().size());
+	}
 }

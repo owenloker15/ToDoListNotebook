@@ -139,8 +139,13 @@ public class NotebookReader {
 	 * @return Task object
 	 */
 	private static Task processTask(AbstractTaskList taskList, String task) {
+		Task newTask = null;
 		Scanner scan = new Scanner(task);
 		String firstLine = scan.nextLine();
+		if (firstLine.charAt(0) == ',') {
+			scan.close();
+			return newTask;
+		}
 		Scanner fl = new Scanner(firstLine);
 		Scanner taskToken = fl.useDelimiter(",");
 		String name = taskToken.next();
@@ -160,7 +165,6 @@ public class NotebookReader {
 			active = true;
 		}
 		
-		Task newTask = null;
 		try {
 			newTask = new Task(name, description, recurring, active);
 		} catch (IllegalArgumentException e) {
