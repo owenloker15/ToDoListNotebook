@@ -79,6 +79,8 @@ public class NotebookReaderTest {
 		assertTrue(t.get(8).isRecurring());
 		assertFalse(t.get(8).isActive());
 		
+		assertEquals(9, n.getCurrentTaskList().getTasks().size());
+		
 		n.setCurrentTaskList("CSC 226");
 		tl = n.getCurrentTaskList();
 		assertEquals(23, tl.getCompletedCount());
@@ -99,6 +101,8 @@ public class NotebookReaderTest {
 		assertFalse(t.get(3).isRecurring());
 		assertFalse(t.get(3).isActive());
 		
+		assertEquals(5, n.getCurrentTaskList().getTasks().size());
+		
 		n.setCurrentTaskList("Habits");
 		tl = n.getCurrentTaskList();
 		assertEquals(0, tl.getCompletedCount());
@@ -110,6 +114,8 @@ public class NotebookReaderTest {
 		assertEquals("Floss", t.get(1).getTaskName());
 		assertTrue(t.get(1).isRecurring());
 		assertTrue(t.get(1).isActive());
+		
+		assertEquals(2, n.getCurrentTaskList().getTasks().size());
 		
 		n.setCurrentTaskList(ActiveTaskList.ACTIVE_TASKS_NAME);
 		assertEquals(5, n.getCurrentTaskList().getTasks().size());
