@@ -151,20 +151,9 @@ public class NotebookReader {
 		String name = taskToken.next();
 		taskToken.close();
 		String description = "";
-//		int counter = 0;
 		while (scan.hasNextLine()) {
 			description += scan.nextLine() + "\n";
 		}
-//		while (scan.hasNextLine()) {
-//			scan.nextLine();
-//			counter++;
-//		}
-//		scan = new Scanner(task);
-//		scan.nextLine();
-//		for (int i = 0; i < counter; i++) {
-//			description += scan.nextLine() + "\n";
-//		}
-//		description += scan.nextLine();
 		boolean recurring = false;
 		boolean active = false;
 		
