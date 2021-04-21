@@ -16,6 +16,8 @@ import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
 /**
  * Represents a Notebook object in the WolfTasks system.
  * A Notebook is a collection of TaskLists
+ * It has a name, a field for a SortedList of all TaskLists, a field for a list of all Tasks marked active, and
+ * a field for a current TaskList
  * @author owenloker
  * @author magolden
  */
@@ -37,7 +39,7 @@ public class Notebook {
 	private boolean isChanged;
 	
 	/**
-	 * Notebook Constructor
+	 * Notebook Constructor. Sets all fields and sets isChanged to true
 	 * @param notebookName name of Notebook
 	 */
 	public Notebook(String notebookName) {
@@ -51,12 +53,8 @@ public class Notebook {
 	/**
 	 * Utilizes NotebookWriter to save a notebook to a given file
 	 * @param notebookFile name of file to save to
-	 * @throws IllegalArgumentException with the message "Unable to save to file." if the current task list is null or empty
 	 */
 	public void saveNotebook(File notebookFile) {
-//		if(this.currentTaskList == null || this.currentTaskList.getTasks().size() == 0) {
-//			throw new IllegalArgumentException("Unable to save to file.");
-//		}
 		NotebookWriter.writeNotebookFile(notebookFile, getNotebookName(), this.taskLists);
 		setChanged(false);
 	}
@@ -98,7 +96,7 @@ public class Notebook {
 	/**
 	 * Sets the Notebook name
 	 * @param notebookName the notebookName to set
-	 * @throws IllegalArgumentException if the notebook name is null, empty, or the same as the active task list name
+	 * @throws IllegalArgumentException with the message "Invalid name." if the notebook name is null, empty, or the same as the active task list name
 	 */
 	private void setNotebookName(String notebookName) {
 		if (notebookName == null || "".equals(notebookName) || "Active Tasks".equals(notebookName)) {
@@ -143,7 +141,7 @@ public class Notebook {
 	/**
 	 * Adds a TaskList to the Notebook
 	 * @param taskList to be added
-	 * @throws IllegalArgumentException if the tasklist name is the name of the active task list
+	 * @throws IllegalArgumentException with the message "Invalid name." if the tasklist name is the name of the active task list or a duplicate
 	 */
 	public void addTaskList(TaskList taskList) {
 		if (taskList.getTaskListName().equals(ActiveTaskList.ACTIVE_TASKS_NAME)) {
@@ -164,15 +162,10 @@ public class Notebook {
 	
 	/**
 	 * Gets the names of all the TaskLists as a String array
+	 * Active tasks is set to the spot in index 0. the rest of the TaskLists are listed in their sorted order
 	 * @return names String array of TaskList names
 	 */
 	public String[] getTaskListsNames() {
-//		String[] names = new String[this.taskLists.size()];
-//		for(int i = 0; i < this.taskLists.size(); i++) {
-//			names[i] = this.taskLists.get(i).getTaskListName();
-//		}
-//		
-//		return names;
 		String[] names = new String[this.taskLists.size() + 1];
 		names[0] = this.activeTaskList.getTaskListName();
 		for(int i = 0; i < this.taskLists.size(); i++) {
@@ -227,7 +220,7 @@ public class Notebook {
 	}
 	
 	/**
-	 * Removes a TaskList form the Notebook
+	 * Removes a TaskList from the Notebook
 	 * @throws IllegalArgumentException if the current task list has the name of an active task list
 	 */
 	public void removeTaskList() {

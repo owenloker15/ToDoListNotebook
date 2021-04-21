@@ -22,7 +22,7 @@ public class TaskList extends AbstractTaskList implements Comparable<TaskList> {
 	}
 	
 	/**
-	 * Gets the tasklist's tasks as a 2D string array
+	 * Gets the tasklist's tasks as a 2D string array. Holds info for priority number and Task name
 	 * @return taskAray 2D array of tasks
 	 */
 	public String[][] getTasksAsArray() {

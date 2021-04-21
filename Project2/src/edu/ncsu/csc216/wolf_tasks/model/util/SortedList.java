@@ -92,7 +92,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	/** 
 	 * Checks to see if the item at the specified index not a valid index
 	 * @param idx index to check
-	 * @throws IndexOutOfBoundsException if the index is negative or greater than the size
+	 * @throws IndexOutOfBoundsException with the message "Invalid index." if the index is negative or greater than the size
 	 */
 	private void checkIndex(int idx) {
 		if (idx < 0 || idx >= size()) {
@@ -114,8 +114,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * removed from the list.
 	 * @param idx index to remove element from
 	 * @return removed element at given index that was removed
-	 * @throws IndexOutOfBoundsException if the idx is out of bounds
-	 * 		for the list
+	 * @throws IndexOutOfBoundsException if the idx is out of bounds for the list
 	 */
 	@Override
 	public E remove(int idx) {
@@ -168,8 +167,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * Returns the element at the given index.
 	 * @param idx index of the element to retrieve
 	 * @return element at the given index
-	 * @throws IndexOutOfBoundsException if the idx is out of bounds
-	 * 		for the list
+	 * @throws IndexOutOfBoundsException if the idx is out of bounds for the list
 	 */
 	@Override
 	public E get(int idx) {

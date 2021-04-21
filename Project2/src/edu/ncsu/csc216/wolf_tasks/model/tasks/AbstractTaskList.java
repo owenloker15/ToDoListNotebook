@@ -7,7 +7,7 @@ import edu.ncsu.csc216.wolf_tasks.model.util.ISwapList;
 import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
 
 /**
- * Parent class of the TaskList object
+ * Parent class of the TaskList object. Has a SwapList of tasks, a name, and a running total of completed tasks
  * @author owenloker
  * @author magolden
  */
@@ -26,7 +26,7 @@ public abstract class AbstractTaskList {
 	 * AbstractTaskList Constructor
 	 * @param taskListName name of TaskList
 	 * @param completedCount tally of complete tasks
-	 * @throws IllegalArgumentException if the completed count is negative
+	 * @throws IllegalArgumentException with the message "Invalid completed count." if the completed count is negative
 	 */
 	public AbstractTaskList(String taskListName, int completedCount) {
 		if (completedCount < 0) {
@@ -48,7 +48,7 @@ public abstract class AbstractTaskList {
 	/**
 	 * Sets the name of the TaskList
 	 * @param taskListName the taskListName to set
-	 * @throws IllegalArgumentException if the task list name is null or empty
+	 * @throws IllegalArgumentException with the message "Invalid name." if the task list name is null or empty
 	 */
 	public void setTaskListName(String taskListName) {
 		if (taskListName == null || "".equals(taskListName)) {
@@ -101,7 +101,7 @@ public abstract class AbstractTaskList {
 	}
 	
 	/**
-	 * Marks a task as Complete
+	 * Marks a task as Complete. (Remove from list and increment completedCount)
 	 * @param task task to complete
 	 */
 	public void completeTask(Task task) {

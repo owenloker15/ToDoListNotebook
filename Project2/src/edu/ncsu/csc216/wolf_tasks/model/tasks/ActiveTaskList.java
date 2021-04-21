@@ -26,14 +26,13 @@ public class ActiveTaskList extends AbstractTaskList {
 	/**
 	 * Adds a task to the Active TaskList
 	 * @throws IllegalArgumentException if the task is null
-	 * @throws IllegalArgumentException if the task is not active
+	 * @throws IllegalArgumentException with the message "Cannot add task to Active Tasks." if the task is not active
 	 */
 	@Override
 	public void addTask(Task task) { 
 		if (task == null) {
 			throw new IllegalArgumentException();
 		}
-//		ISwapList<Task> tasks = this.getTasks();
 		if(task.isActive()) {
 			super.addTask(task);
 		}
@@ -45,7 +44,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	/**
 	 * Sets the name of the tasklist
 	 * @param taskListName name of tasklist
-	 * @throws IllegalArgumentException if the task list name is set to anything other than "Active Tasks"
+	 * @throws IllegalArgumentException with the message "The Active Tasks list may not be edited." if the task list name is set to anything other than "Active Tasks"
 	 */
 	@Override
 	public void setTaskListName(String taskListName) {
@@ -58,7 +57,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	}
 	
 	/**
-	 * Gets the tasks in the list as a 2D String array
+	 * Gets the tasks in the list as a 2D String array. Holds info for taskList name and task name
 	 * @return taskArray 2D string array of tasks
 	 */
 	public String[][] getTasksAsArray() {

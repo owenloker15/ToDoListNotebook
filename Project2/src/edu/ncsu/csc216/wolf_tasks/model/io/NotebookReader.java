@@ -17,7 +17,7 @@ import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 
 /**
  * Handles File input for the WolfTasks system. Processes a string representation of a Notebook
- * and uses it to create a Notebook object
+ * and uses it to create a Notebook object by breaking the text down into TaskLists and Tasks
  * @author owenloker
  * @author magolden
  */
@@ -78,6 +78,7 @@ public class NotebookReader {
 	
 	/**
 	 * Processes a string representation of a TaskList and uses it to create a TaskList object
+	 * Any invalid TaskLists are skipped
 	 * @param taskList string representation of a TaskList
 	 * @return TaskList object
 	 */
@@ -91,16 +92,9 @@ public class NotebookReader {
 		try {
 			cc = listToken.nextInt();
 		} catch (NoSuchElementException e) {
-//			scanFL.close();
-//			scan.close();
-//			return null;
+//			do nothing
 		}
 		listToken.close();
-		
-//		if (cc < 0) {
-//			scan.close();
-//			return null;
-//		}
 		
 		TaskList tl = null;
 		try {
@@ -134,6 +128,7 @@ public class NotebookReader {
 	
 	/**
 	 * Processes a string representation of a Task and uses it to create a Task object
+	 * Any invalid Tasks will be skipped
 	 * @param taskList lists of tasks that the current task will be associated with
 	 * @param task string representation of a Task
 	 * @return Task object

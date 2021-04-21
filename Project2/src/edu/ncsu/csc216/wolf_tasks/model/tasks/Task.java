@@ -7,7 +7,8 @@ import edu.ncsu.csc216.wolf_tasks.model.util.ISwapList;
 import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
 
 /**
- * A Task object in the WolfTasks system. Implements the Cloneable interface
+ * A Task object in the WolfTasks system. A Task has a taskList, a name, a description, and 
+ * boolean values for if the task is recurring or active. Implements the Cloneable interface
  * @author owenloker
  * @author magolden
  */
@@ -54,7 +55,7 @@ public class Task implements Cloneable {
 	/**
 	 * Sets the task name
 	 * @param taskName the taskName to set
-	 * @throws IllegalArgumentException if the task name is null or empty
+	 * @throws IllegalArgumentException with the message "Incomplete task information." if the task name is null or empty
 	 */
 	public void setTaskName(String taskName) {
 		if(taskName == null || "".equals(taskName)) {
@@ -74,7 +75,7 @@ public class Task implements Cloneable {
 	/**
 	 * Sets the task description
 	 * @param taskDescription the taskDescpription to set
-	 * @throws IllegalArgumentException if the task description is null
+	 * @throws IllegalArgumentException with the message "Incomplete task information." if the task description is null
 	 */
 	public void setTaskDescription(String taskDescription) {
 		if(taskDescription == null) {
@@ -129,7 +130,7 @@ public class Task implements Cloneable {
 	/**
 	 * Adds a task list
 	 * @param taskList tasklist to be added
-	 * @throws IllegalArgumentException if the tasklist is null
+	 * @throws IllegalArgumentException with the message "Incomplete task information." if the tasklist is null
 	 */
 	public void addTaskList(AbstractTaskList taskList) {
 		if (taskList == null) {
