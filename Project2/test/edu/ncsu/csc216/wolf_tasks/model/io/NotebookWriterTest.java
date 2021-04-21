@@ -76,4 +76,6 @@ public class NotebookWriterTest {
 		assertTrue(book.getCurrentTaskList().getTasks().get(1).isActive());
 		
 	}
+	
+	
 }

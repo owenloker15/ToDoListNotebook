@@ -45,7 +45,7 @@ public class NotebookWriter {
             	out.write("# " + taskList.get(i).getTaskListName() + "," + taskList.get(i).getCompletedCount() + "\n");
             	
             	for (int j = 0; j < taskList.get(i).getTasks().size(); j++) {
-            		out.write(taskList.get(i).getTasks().get(j).toString() + "\n");
+            		out.write(taskList.get(i).getTasks().get(j).toString());
             	}
             }
             
